@@ -4,6 +4,7 @@ import Scanner from './components/Scanner';
 import  Summary  from './components/Summary';
 import Navigation from './components/Navigation';
 import { NoMatch } from './components/NoMatch';
+
 import './App.css';
 
 function App() {
