@@ -1,17 +1,6 @@
 import React from 'react';
+import moment from 'moment';
 
-
-class Date extends React.Component{
-
-    render(){
-
-        return(
-            <div>
-                <h5>{this.props.date}</h5>
-            </div>
-        )
-    }
+export default function Date (){
+    return <h5> {moment().format('lll')}</h5>
 }
-
-export default Date;
-

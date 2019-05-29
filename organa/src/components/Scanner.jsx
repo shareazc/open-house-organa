@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import { Layout } from './Layout';
-import Fetch from "./Fetch";
 import styled from "styled-components";
 
 const Styles = styled.div`

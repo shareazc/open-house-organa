@@ -1,4 +1,4 @@
-/* import React from 'react';
+ import React from 'react';
 import firebase from '../firebase/FirebaseConfig';
 import Attendance from './Attendance';
 import Absence from './Absence';
@@ -52,4 +52,4 @@ class Summary extends React.Component{
 
 export default Summary;
 
- */
+ 
