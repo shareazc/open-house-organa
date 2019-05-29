@@ -4,15 +4,11 @@ import {Layout} from './Layout';
 import styled from "styled-components";
 
 const Styles = styled.div`
-  .section {
-    display: flex;
-    
+  * {
+    margin: auto;
   }
-
-  .section video {
-    display: inline;
-    justify-content: center;
-  }
+  
+  
 `;
  
 class Scanner extends Component {
@@ -21,6 +17,7 @@ class Scanner extends Component {
     this.state = {
       delay: 100,
       result: 'No result',
+      date: new Date()
     }
  
     this.handleScan = this.handleScan.bind(this)
@@ -33,6 +30,9 @@ class Scanner extends Component {
   handleError(err){
     console.error(err)
   }
+
+   
+  
   render(){
     
     const previewStyle = {
@@ -44,13 +44,17 @@ class Scanner extends Component {
       <div>
         <Layout>
           <Styles>
-          <QrReader
+            <h1>¡Bienvenida, Laboratorian!</h1>
+            <p>Por favor, escanea tu código QR</p>
+
+          <QrReader 
             delay={this.state.delay}
             style={previewStyle}
             onError={this.handleError}
             onScan={this.handleScan}
             />
           <p>{this.state.result}</p>
+
         </Styles>
         </Layout>
       </div>
