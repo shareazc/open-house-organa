@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
-import {Navigation} from './Navigation';
 import {Layout} from './Layout';
 import styled from "styled-components";
 
@@ -43,7 +42,6 @@ class Scanner extends Component {
  
     return(
       <div>
-        <Navigation />
         <Layout>
           <Styles>
           <QrReader
