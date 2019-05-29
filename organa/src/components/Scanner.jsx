@@ -4,14 +4,10 @@ import {Layout} from './Layout';
 import styled from "styled-components";
 
 const Styles = styled.div`
-  .section {
-    display: flex;
-    
-  }
 
-  .section video {
-    display: inline;
-    justify-content: center;
+  .video {
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
  
@@ -21,6 +17,7 @@ class Scanner extends Component {
     this.state = {
       delay: 100,
       result: 'No result',
+      date: new Date()
     }
  
     this.handleScan = this.handleScan.bind(this)
@@ -33,6 +30,9 @@ class Scanner extends Component {
   handleError(err){
     console.error(err)
   }
+
+   
+  
   render(){
     
     const previewStyle = {
