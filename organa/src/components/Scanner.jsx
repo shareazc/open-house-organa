@@ -1,5 +1,20 @@
-import React, { Component } from 'react'
-import QrReader from 'react-qr-scanner'
+import React, { Component } from 'react';
+import QrReader from 'react-qr-scanner';
+import {Navigation} from './Navigation';
+import {Layout} from './Layout';
+import styled from "styled-components";
+
+const Styles = styled.div`
+  .section {
+    display: flex;
+    
+  }
+
+  .section video {
+    display: inline;
+    justify-content: center;
+  }
+`;
  
 class Scanner extends Component {
   constructor(props){
@@ -20,6 +35,7 @@ class Scanner extends Component {
     console.error(err)
   }
   render(){
+    
     const previewStyle = {
       height: 240,
       width: 320,
@@ -27,13 +43,18 @@ class Scanner extends Component {
  
     return(
       <div>
-        <QrReader
-          delay={this.state.delay}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
-          />
-        <p>{this.state.result}</p>
+        <Navigation />
+        <Layout>
+          <Styles>
+          <QrReader
+            delay={this.state.delay}
+            style={previewStyle}
+            onError={this.handleError}
+            onScan={this.handleScan}
+            />
+          <p>{this.state.result}</p>
+        </Styles>
+        </Layout>
       </div>
     )
   }
