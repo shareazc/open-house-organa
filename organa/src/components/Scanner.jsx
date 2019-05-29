@@ -5,9 +5,10 @@ import styled from "styled-components";
 
 const Styles = styled.div`
   * {
+    margin-top: 2rem;
     margin: auto;
+    text-align: center;
   }
-  
   
 `;
  
@@ -44,16 +45,18 @@ class Scanner extends Component {
       <div>
         <Layout>
           <Styles>
-            <h1>¡Bienvenida, Laboratorian!</h1>
-            <p>Por favor, escanea tu código QR</p>
-
+            <br/>
+            <div className ="title">
+              <h1>¡Bienvenida!</h1>
+              <p>Por favor, escanea tu código QR</p>
+            </div>
           <QrReader 
             delay={this.state.delay}
             style={previewStyle}
             onError={this.handleError}
             onScan={this.handleScan}
             />
-          <p>{this.state.result}</p>
+          <h1>{this.state.result}</h1>
 
         </Styles>
         </Layout>
