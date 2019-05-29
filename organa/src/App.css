@@ -4,8 +4,13 @@
   padding: 0;
 }
 
+h1, h2, h3 {
+  font-family: 'Bitter', serif;
+  font-weight: bold;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.4;
 }
 
