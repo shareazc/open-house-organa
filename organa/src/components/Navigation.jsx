@@ -1,7 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import LogoL from "../assets/Laboratorialogo.png";
 import LogoLBLK from '../assets/LaboratorialogoBLK.png';
 import styled from "styled-components";
 
