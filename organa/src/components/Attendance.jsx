@@ -10,26 +10,32 @@ class Attendance extends React.Component{
             attendance: 0,
             total: 0
         }
+
         this.numberAttendance = this.numberAttendance.bind(this);
     }
 
+    componentDidMount() {
+        this.numberAttendance(50)
+    }
 
-    numberAttendance(attendancList, totalStudents){
-        const attendance = attendancList.length;
+
+    numberAttendance(totalStudents){
         this.setState({ 
-            attendance: attendance,
             total: totalStudents
         })
     }
 
     render(){
-        this.numberAttendance(this.props.list, this.props.total)
+        
+        console.log(this.props.totalAttendance)
+        console.log(this.props.date)
+        console.log(this.state)
         return(
             <Card>
                 <Card.Body>
                     <Card.Title>Asistencias</Card.Title>
                     <Card.Text>
-                        {this.state.attendance}
+                        {this.props.totalAttendance}
                     </Card.Text>
                     <Card.Text>
                         <small className="text-muted">Total de estudiantes {this.state.total}</small>
