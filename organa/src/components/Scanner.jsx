@@ -18,7 +18,6 @@ class Scanner extends Component {
     this.state = {
       delay: 100,
       result: 'No result',
-      date: new Date()
     }
  
     this.handleScan = this.handleScan.bind(this)
@@ -31,7 +30,6 @@ class Scanner extends Component {
   handleError(err){
     console.error(err)
   }
-
    
   
   render(){
@@ -46,10 +44,8 @@ class Scanner extends Component {
         <Layout>
           <Styles>
             <br/>
-            <div className ="title">
               <h1>¡Bienvenida!</h1>
               <p>Por favor, escanea tu código QR</p>
-            </div>
           <QrReader 
             delay={this.state.delay}
             style={previewStyle}
@@ -57,7 +53,7 @@ class Scanner extends Component {
             onScan={this.handleScan}
             />
           <h1>{this.state.result}</h1>
-
+          {console.log(this.state.result)}
         </Styles>
         </Layout>
       </div>
