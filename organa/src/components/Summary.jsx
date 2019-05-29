@@ -12,7 +12,8 @@ class Summary extends React.Component{
         super();
         this.state = {
             date: [],
-            list: []
+            list: [],
+            total: 0
         }
     }
 
@@ -27,13 +28,21 @@ class Summary extends React.Component{
                 });
             }
         })
+        const totalStudentsList = firebase.database().ref('general-list');
+        totalStudentsList.on('value', (s)=>{
+            let totalStudents = s.val();
+            const totalStudent = totalStudents.length;
+            this.setState({
+                total: totalStudent
+            })
+        })
     }
 
     render(){
         return(
             <Container>
                 <Row>
-                    <Col lg={8}><h1 ><Attendance date={this.state.date} list={this.state.list}/></h1></Col>
+                    <Col lg={8}><h1 ><Attendance date={this.state.date} list={this.state.list} total={this.state.total}/></h1></Col>
                     <Col lg={4}><h2><Absence date={this.state.date} list={this.state.list}/></h2></Col>
                 </Row>
             </Container>
