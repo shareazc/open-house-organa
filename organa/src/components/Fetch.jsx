@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import FilterData from './FilterData'
 
 class Fetch extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
       data: []
     }
   }
@@ -16,16 +16,11 @@ class Fetch extends Component {
         data: [...data]
       })  
     });
-
-
-
   }
 
   render() {
-    console.log(this.state.data)
-
     return (
-     <div>      </div>
+     <div>  <FilterData FilterData={this.state.data}/>   </div>
     )
   }
 }
