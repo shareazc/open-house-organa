@@ -4,14 +4,10 @@ import {Layout} from './Layout';
 import styled from "styled-components";
 
 const Styles = styled.div`
-  .section {
-    display: flex;
-    
-  }
 
-  .section video {
-    display: inline;
-    justify-content: center;
+  .video {
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
  
@@ -48,7 +44,6 @@ class Scanner extends Component {
       <div>
         <Layout>
           <Styles>
-          
           <QrReader
             delay={this.state.delay}
             style={previewStyle}
@@ -56,7 +51,6 @@ class Scanner extends Component {
             onScan={this.handleScan}
             />
           <p>{this.state.result}</p>
-          
         </Styles>
         </Layout>
       </div>
