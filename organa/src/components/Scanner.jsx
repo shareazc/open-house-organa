@@ -4,11 +4,11 @@ import {Layout} from './Layout';
 import styled from "styled-components";
 
 const Styles = styled.div`
-
-  .video {
-    margin-left: auto;
-    margin-right: auto;
+  * {
+    margin: auto;
   }
+  
+  
 `;
  
 class Scanner extends Component {
@@ -44,13 +44,17 @@ class Scanner extends Component {
       <div>
         <Layout>
           <Styles>
-          <QrReader
+            <h1>¡Bienvenida, Laboratorian!</h1>
+            <p>Por favor, escanea tu código QR</p>
+
+          <QrReader 
             delay={this.state.delay}
             style={previewStyle}
             onError={this.handleError}
             onScan={this.handleScan}
             />
           <p>{this.state.result}</p>
+
         </Styles>
         </Layout>
       </div>
