@@ -1,5 +1,4 @@
 import React from 'react';
-import {Card} from 'react-bootstrap'
 import moment from 'moment';
 import firebase from "../firebase/FirebaseConfig"
 
@@ -18,7 +17,7 @@ class SendAttendanceToFirebase extends React.Component{
     }
 
     componentDidMount(){
-        let date = moment().format('LL')
+        let date = moment().format('LL');
         const dbRefAttendance = firebase.database().ref();
         const attendanceRef = dbRefAttendance.child('attendance').child(date);
         attendanceRef.set([
@@ -33,9 +32,9 @@ class SendAttendanceToFirebase extends React.Component{
         console.log(this.props.attendance )
         console.log(moment().format('LL'))
         return(
-            <Card className="text-center">
+            <div>
                
-            </Card>
+            </div>
         )
     }
 }
