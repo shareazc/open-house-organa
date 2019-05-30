@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
-import {Layout} from './Layout';
+import { Layout } from './Layout';
 import styled from "styled-components";
 
 const Styles = styled.div`
@@ -11,50 +11,81 @@ const Styles = styled.div`
   }
   
 `;
- 
+
 class Scanner extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      delay: 100,
-      result: 'No result',
+      delay: 1000,
+    /*   result: 'No result', */
+      attendance: [],
+      scanner: [],
+      cleanAttendance: []
     }
- 
-    this.handleScan = this.handleScan.bind(this)
+
+   /*  this.scanData = this.scanData.bind(this) */
+    this.findDuplicate = this.findDuplicate.bind(this)
   }
-  handleScan(data){
+ /*  scanData(data) {
     this.setState({
-      result: data,
+      result: data
     })
+  } */
+
+  findDuplicate(data) {
+    if (data != null) {
+      this.setState({
+        scanner: data
+      })
+      // console.log(this.state.scanner)
+      this.setState({
+        attendance: [...this.state.attendance, this.state.scanner]
+      })
+
+      const clean = [...new Set(this.state.attendance)]
+      this.setState({
+        cleanAttendance: clean
+      })
+      console.log(this.state.cleanAttendance)
+
+
+    }
   }
-  handleError(err){
+
+
+
+  handleError(err) {
     console.error(err)
   }
-   
-  
-  render(){
-    
+
+
+
+  render() {
+
     const previewStyle = {
       height: 240,
       width: 320,
     }
- 
-    return(
+
+    return (
       <div>
         <Layout>
           <Styles>
-            <br/>
+            <br />
+            <div className="title">
               <h1>¡Bienvenida!</h1>
               <p>Por favor, escanea tu código QR</p>
-          <QrReader 
-            delay={this.state.delay}
-            style={previewStyle}
-            onError={this.handleError}
-            onScan={this.handleScan}
+            </div>
+            <QrReader
+              delay={this.state.delay}
+              style={previewStyle}
+              onError={this.handleError}
+             // onScan={this.scanData}
+              onScan={this.findDuplicate}
             />
-          <h1>{this.state.result}</h1>
-          {console.log(this.state.result)}
-        </Styles>
+            <h1>{this.state.result}</h1>
+
+          </Styles>
         </Layout>
       </div>
     )
