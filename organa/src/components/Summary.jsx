@@ -29,7 +29,7 @@ class Summary extends React.Component{
         })
         totalStudentsNumber.on('value', (s)=>{
             let totalStudents = s.val();
-            console.log(totalStudents)
+            // console.log(totalStudents)
                 this.setState({
                     totalStudents: totalStudents.totalStudents
                 })
