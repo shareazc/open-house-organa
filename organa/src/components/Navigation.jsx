@@ -6,6 +6,8 @@ import LisoBLK from '../assets/LisotipoBLK.png';
 import styled from "styled-components";
 import Date from './Date.jsx';
 
+
+/*
 const Styles = styled.div`
   .navbar {
     background-color: #ffe521;
@@ -56,9 +58,10 @@ class Navigation extends React.Component {
 }
 
 export default Navigation;
+*/
 
 
-/*
+
 
 const Styles = styled.div`
   .navbar {
@@ -103,4 +106,3 @@ class Navigation extends React.Component {
 }
 
 export default Navigation;
-*/
