@@ -15,7 +15,7 @@ class Absence extends React.Component{
     }
 
     componentDidMount(){
-        console.log(this.props.totalAttendance)
+        console.log(this.props.totalAttendance + "componentdidmount")
         this.numberAbsence(50);
     }
 
@@ -28,9 +28,9 @@ class Absence extends React.Component{
     }
 
     render(){
-        console.log(this.props.totalAttendance)
-        console.log(this.props.date)
-        console.log(this.state)
+        console.log(this.props.totalAttendance + "render")
+        // console.log(this.props.date)
+        // console.log(this.state)
         return(
             <Card>
                 <Card.Body>

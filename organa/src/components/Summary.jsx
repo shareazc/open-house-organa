@@ -32,7 +32,8 @@ class Summary extends React.Component{
             <Container>
                 <Row>
                     <Col lg={8}><h1 ><Attendance date={this.state.date} totalAttendance={this.state.total}/></h1></Col>
-                    <Col lg={4}><h2><Absence totalAttendance={this.state.total} date={this.state.date}/></h2></Col>
+                    <Col lg={4}><h2><Absence date={this.state.date} list={this.state.total}/></h2></Col>
+                    {console.log(this.state.total)}
                 </Row>
             </Container>
         )
@@ -40,4 +41,3 @@ class Summary extends React.Component{
 }
 
 export default Summary;
-
