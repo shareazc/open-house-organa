@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Redirect } from 'react-router-dom';
 import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
+import Success from "./Success"
 
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
@@ -31,7 +32,7 @@ class Scanner extends Component {
     this.state = {
 
       delay: 500,
-      result: null, 
+      result: false, 
       attendance: [],
       scanner: [],
       cleanAttendance: []
@@ -45,22 +46,28 @@ class Scanner extends Component {
     this.setState({
       result: data
     })
+    
   } 
 
   findDuplicate(data) {
     if (data != null) {
       this.setState({
-        scanner: data
+        scanner: data,
       })
+      console.log(this.state.scanner)
       this.setState({
         attendance: [...this.state.attendance, this.state.scanner]
       })
-
-      const clean = [...new Set(this.state.attendance)]
+      console.log(this.state.attendance)
       this.setState({
-        cleanAttendance: clean
+        result: true
       })
-      console.log(this.state.cleanAttendance)
+      // console.log(this.state.result)
+    //   const clean = [...new Set(this.state.attendance)]
+    //   this.setState({
+    //     cleanAttendance: clean
+    //   })
+    //   console.log(this.state.cleanAttendance)
     }
   }
 
@@ -73,8 +80,9 @@ class Scanner extends Component {
 
 
   render() {
-    if(this.state.result){
-      return <Redirect to= '/success'/>
+    if(this.state.result !== false){
+      setTimeout(()=> this.setState({result: false}), 3000)    
+      return <Success/>
     }
 
 
@@ -99,7 +107,7 @@ class Scanner extends Component {
             />
 
             <h1>{this.state.result}</h1>
-            {console.log (this.state.cleanAttendance)}
+            {/* {console.log (this.state.cleanAttendance)} */}
           </Styles>
 
         </Layout>
