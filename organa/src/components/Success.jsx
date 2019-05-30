@@ -1,6 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Modal, Button } from "react-bootstrap"
+import styled from "styled-components";
+
+const Styles = styled.div`
+    .modal-title {
+
+    }
+
+`
 
 export default class ScanSuccessPage extends React.Component {
     constructor(props){
@@ -12,13 +20,14 @@ export default class ScanSuccessPage extends React.Component {
     render(){
         // setTimeout(()=> this.setState({redirect: true}), 3000)    
         return(
+            <Styles>
             <Modal.Dialog>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
+                    <Modal.Title><h3>¡Bienvenida!</h3></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Modal body text goes here.</p>
+                    <p>Tu código ha sido escaneado de manera exitosa. </p>
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -26,6 +35,7 @@ export default class ScanSuccessPage extends React.Component {
                     <Button variant="primary">Save changes</Button>
                 </Modal.Footer>
             </Modal.Dialog>
+            </Styles>
         )
         
 }
