@@ -17,6 +17,7 @@ const Styles = styled.div`
     text-align: center;
     border-radius: 1rem;
   }  
+
 `;
 
 const styleRight = {

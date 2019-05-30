@@ -32,9 +32,9 @@ class SendAttendanceToFirebase extends React.Component{
         console.log(this.props.attendance )
         console.log(moment().format('LL'))
         return(
-            <div>
-               
-            </div>
+
+            <div> </div>
+
         )
     }
 }
