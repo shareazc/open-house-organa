@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/shareazc/open-house-organa/tree/master/organa/public/static/css/main.220eb44f.chunk.css",
-    "main.js": "/shareazc/open-house-organa/tree/master/organa/public/static/js/main.bcba6c70.chunk.js",
-    "main.js.map": "/shareazc/open-house-organa/tree/master/organa/public/static/js/main.bcba6c70.chunk.js.map",
-    "runtime~main.js": "/shareazc/open-house-organa/tree/master/organa/public/static/js/runtime~main.6f82b828.js",
-    "runtime~main.js.map": "/shareazc/open-house-organa/tree/master/organa/public/static/js/runtime~main.6f82b828.js.map",
-    "static/js/2.db607089.chunk.js": "/shareazc/open-house-organa/tree/master/organa/public/static/js/2.db607089.chunk.js",
-    "static/js/2.db607089.chunk.js.map": "/shareazc/open-house-organa/tree/master/organa/public/static/js/2.db607089.chunk.js.map",
-    "index.html": "/shareazc/open-house-organa/tree/master/organa/public/index.html",
-    "precache-manifest.122c919a66952f906bc07d31297727ba.js": "/shareazc/open-house-organa/tree/master/organa/public/precache-manifest.122c919a66952f906bc07d31297727ba.js",
-    "service-worker.js": "/shareazc/open-house-organa/tree/master/organa/public/service-worker.js",
-    "static/css/main.220eb44f.chunk.css.map": "/shareazc/open-house-organa/tree/master/organa/public/static/css/main.220eb44f.chunk.css.map",
-    "static/media/LaboratorialogoBLK.png": "/shareazc/open-house-organa/tree/master/organa/public/static/media/LaboratorialogoBLK.bcdab9d9.png",
-    "static/media/PinkBracketsLeft.png": "/shareazc/open-house-organa/tree/master/organa/public/static/media/PinkBracketsLeft.44a8ef37.png",
-    "static/media/PinkBracketsRight.png": "/shareazc/open-house-organa/tree/master/organa/public/static/media/PinkBracketsRight.ab37d7c1.png"
+    "main.css": "/open-house-organa/tree/master/organa/public/static/css/main.220eb44f.chunk.css",
+    "main.js": "/open-house-organa/tree/master/organa/public/static/js/main.8a00d805.chunk.js",
+    "main.js.map": "/open-house-organa/tree/master/organa/public/static/js/main.8a00d805.chunk.js.map",
+    "runtime~main.js": "/open-house-organa/tree/master/organa/public/static/js/runtime~main.1570edaa.js",
+    "runtime~main.js.map": "/open-house-organa/tree/master/organa/public/static/js/runtime~main.1570edaa.js.map",
+    "static/js/2.c323749a.chunk.js": "/open-house-organa/tree/master/organa/public/static/js/2.c323749a.chunk.js",
+    "static/js/2.c323749a.chunk.js.map": "/open-house-organa/tree/master/organa/public/static/js/2.c323749a.chunk.js.map",
+    "index.html": "/open-house-organa/tree/master/organa/public/index.html",
+    "precache-manifest.24b3c24e89822d3e51a5caf5fb5fd6a6.js": "/open-house-organa/tree/master/organa/public/precache-manifest.24b3c24e89822d3e51a5caf5fb5fd6a6.js",
+    "service-worker.js": "/open-house-organa/tree/master/organa/public/service-worker.js",
+    "static/css/main.220eb44f.chunk.css.map": "/open-house-organa/tree/master/organa/public/static/css/main.220eb44f.chunk.css.map",
+    "static/media/LaboratorialogoBLK.png": "/open-house-organa/tree/master/organa/public/static/media/LaboratorialogoBLK.bcdab9d9.png",
+    "static/media/PinkBracketsLeft.png": "/open-house-organa/tree/master/organa/public/static/media/PinkBracketsLeft.44a8ef37.png",
+    "static/media/PinkBracketsRight.png": "/open-house-organa/tree/master/organa/public/static/media/PinkBracketsRight.ab37d7c1.png"
   }
 }
