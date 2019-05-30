@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FilterData from './FilterData'
-import SendDataToFirebase from './SendDataToFirebase';
+//import FilterData from './FilterData'
+//import SendDataToFirebase from './SendDataToFirebase';
 import firebase from '../firebase/FirebaseConfig';
 class Fetch extends Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class Fetch extends Component {
   
   render() {
     return (
-      <div>  <FilterData fetchData={this.state.data} />   </div>
+      <div>   </div>
     )
   }
 }
