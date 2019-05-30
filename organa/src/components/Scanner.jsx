@@ -47,8 +47,6 @@ class Scanner extends Component {
         cleanAttendance: clean
       })
       console.log(this.state.cleanAttendance)
-
-
     }
   }
 
