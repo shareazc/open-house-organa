@@ -12,7 +12,7 @@ const Styles = styled.div`
 
   .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
     margin-top: .5rem;
-    margin-right:  7rem;
+    margin-right:  6rem;
     font-weight: bold;
   }
 `;

@@ -4,37 +4,36 @@ import Attendance from './Attendance';
 import Absence from './Absence';
 import {Container, Row, Col} from 'react-bootstrap';
 
-
-
 class Summary extends React.Component{
 
     constructor(){
         super();
         this.state = {
             date: [],
-            list: [],
-            total: 0
+            totalAttendance: 0,
+            totalStudents: 0
         }
     }
 
     componentDidMount(){
         const attendanceList = firebase.database().ref('attendance');
+        const totalStudentsNumber = firebase.database().ref('totalStudentsInDB');
         attendanceList.on('value', (s) =>{
             let attendanceStudents = s.val();
             for(let attendanceStudent in attendanceStudents){
                 this.setState({
                     date: attendanceStudents[attendanceStudent].date,
-                    list: attendanceStudents[attendanceStudent].list,
+                    totalAttendance: attendanceStudents[attendanceStudent].total,
                 });
             }
         })
-        const totalStudentsList = firebase.database().ref('general-list');
-        totalStudentsList.on('value', (s)=>{
+        totalStudentsNumber.on('value', (s)=>{
             let totalStudents = s.val();
-            const totalStudent = totalStudents.length;
-            this.setState({
-                total: totalStudent
-            })
+            for(let totalStudent in totalStudents){
+                this.setState({
+                    totalStudents: totalStudents[totalStudent].totalStudents
+                })
+            }
         })
     }
 
@@ -42,8 +41,8 @@ class Summary extends React.Component{
         return(
             <Container>
                 <Row>
-                    <Col lg={8}><h1 ><Attendance date={this.state.date} list={this.state.list} total={this.state.total}/></h1></Col>
-                    <Col lg={4}><h2><Absence date={this.state.date} list={this.state.list}/></h2></Col>
+                    <Col lg={8}><h1 ><Attendance totalAttendance={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h1></Col>
+                    <Col lg={4}><h2><Absence list={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h2></Col>
                 </Row>
             </Container>
         )
@@ -51,4 +50,3 @@ class Summary extends React.Component{
 }
 
 export default Summary;
-
