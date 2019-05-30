@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import {Layout} from './Layout';
 import styled from "styled-components";
+import { Redirect } from 'react-router-dom';
 
 const Styles = styled.div`
   * {
@@ -9,7 +10,6 @@ const Styles = styled.div`
     margin: auto;
     text-align: center;
   }
-  
 `;
  
 class Scanner extends Component {
@@ -17,24 +17,27 @@ class Scanner extends Component {
     super(props)
     this.state = {
       delay: 100,
-      result: 'No result',
-      date: new Date()
+      result: null,
+
     }
  
-    this.handleScan = this.handleScan.bind(this)
+  this.handleScan = this.handleScan.bind(this)
   }
   handleScan(data){
     this.setState({
       result: data,
     })
+    
   }
+
   handleError(err){
     console.error(err)
   }
 
-   
-  
   render(){
+    if(this.state.result){
+      return <Redirect to= '/success'/>
+    }
     
     const previewStyle = {
       height: 240,
@@ -56,7 +59,7 @@ class Scanner extends Component {
             onError={this.handleError}
             onScan={this.handleScan}
             />
-          <h1>{this.state.result}</h1>
+      
 
         </Styles>
         </Layout>
