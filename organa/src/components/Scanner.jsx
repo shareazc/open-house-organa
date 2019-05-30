@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import { Layout } from './Layout';
 import styled from "styled-components";
-import { Redirect } from 'react-router-dom';
 import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import Success from "./Success"
-
+import SendAttendanceToFirebase from './SendAttendanceToFirebase'
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
@@ -62,12 +61,6 @@ class Scanner extends Component {
       this.setState({
         result: true
       })
-      // console.log(this.state.result)
-    //   const clean = [...new Set(this.state.attendance)]
-    //   this.setState({
-    //     cleanAttendance: clean
-    //   })
-    //   console.log(this.state.cleanAttendance)
     }
   }
 
@@ -111,6 +104,7 @@ class Scanner extends Component {
           </Styles>
 
         </Layout>
+        <SendAttendanceToFirebase attendance={this.state.attendance}/>
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
       </div>
     )
