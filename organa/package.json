@@ -2,7 +2,7 @@
   "name": "organa",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shareazc.github.io/open-house-organa/tree/master/organa",
+  "homepage": "https://shareazc.github.io/open-house-organa",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "firebase": "^6.1.0",
