@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import { Layout } from './Layout';
 import styled from "styled-components";
+import { Redirect } from 'react-router-dom';
 import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
 
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
+
 
 const Styles = styled.div`
   * {
@@ -27,12 +29,14 @@ class Scanner extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      delay: 1000,
+
+      delay: 500,
       result: null, 
       attendance: [],
       scanner: [],
       cleanAttendance: []
     }
+    
 
      this.scanData = this.scanData.bind(this) 
     this.findDuplicate = this.findDuplicate.bind(this)
@@ -71,6 +75,10 @@ class Scanner extends Component {
 
 
   render() {
+    if(this.state.result){
+      return <Redirect to= '/success'/>
+    }
+
 
     const previewStyle = {
       //height: 600,
@@ -80,7 +88,7 @@ class Scanner extends Component {
     return (
       <div>
         <br />
-        <img className="brackets" src={pnkBrktL} style={{height: 100}} />
+        <img className="brackets" src={pnkBrktL} style={{height: 100}} alt="LabBrackets" />
         <Layout>
           <Styles>
               <h1>¡Bienvenida!</h1>
@@ -89,14 +97,15 @@ class Scanner extends Component {
               delay={this.state.delay}
               style={previewStyle}
               onError={this.handleError}
-              onScan={this.scanData}
               onScan={this.findDuplicate}
             />
+
             <h1>{this.state.result}</h1>
             {console.log (this.state.cleanAttendance)}
           </Styles>
+
         </Layout>
-        <img className="brackets" src={pnkBrktR} style={styleRight} />
+        <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
       </div>
     )
   }
