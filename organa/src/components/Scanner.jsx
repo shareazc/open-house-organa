@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import { Layout } from './Layout';
 import styled from "styled-components";
+import { Redirect } from 'react-router-dom';
 import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
 
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
+
 
 const Styles = styled.div`
   * {
@@ -27,15 +29,17 @@ class Scanner extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
       delay: 1000,
-    /*   result: 'No result', */
+      result: null,
       attendance: [],
       scanner: [],
       cleanAttendance: []
     }
+    
+  this.findDuplicate = this.findDuplicate.bind(this)
+  this.handleScan = this.handleScan.bind(this)
 
-   /*  this.scanData = this.scanData.bind(this) */
-    this.findDuplicate = this.findDuplicate.bind(this)
   }
  /*  scanData(data) {
     this.setState({
@@ -72,6 +76,10 @@ class Scanner extends Component {
 
 
   render() {
+    if(this.state.result){
+      return <Redirect to= '/success'/>
+    }
+
 
     const previewStyle = {
       //height: 600,
@@ -93,9 +101,11 @@ class Scanner extends Component {
              // onScan={this.scanData}
               onScan={this.findDuplicate}
             />
+
             <h1>{this.state.result}</h1>
             {console.log (this.state.cleanAttendance)}
           </Styles>
+
         </Layout>
         <img className="brackets" src={pnkBrktR} style={styleRight} />
       </div>
