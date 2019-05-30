@@ -4,34 +4,64 @@ import { Layout } from './Layout';
 import styled from "styled-components";
 
 const Styles = styled.div`
-  *  {
-   margin-top: 2rem;
-   margin: auto;
-   text-align: center
+  * {
+    margin-top: 2rem;
+    margin: auto;
+    text-align: center;
   }
+  
 `;
 
 class Scanner extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      delay: 100,
-      result: '',
-      date: '',
-      data: []
+      delay: 1000,
+    /*   result: 'No result', */
+      attendance: [],
+      scanner: [],
+      cleanAttendance: []
     }
 
+   /*  this.scanData = this.scanData.bind(this) */
+    this.findDuplicate = this.findDuplicate.bind(this)
   }
-  handleScan = (data) => {
+ /*  scanData(data) {
     this.setState({
-      result: data,
+      result: data
     })
+  } */
+
+  findDuplicate(data) {
+    if (data != null) {
+      this.setState({
+        scanner: data
+      })
+      // console.log(this.state.scanner)
+      this.setState({
+        attendance: [...this.state.attendance, this.state.scanner]
+      })
+
+      const clean = [...new Set(this.state.attendance)]
+      this.setState({
+        cleanAttendance: clean
+      })
+      console.log(this.state.cleanAttendance)
+
+
+    }
   }
-  handleError = (err) => {
+
+
+
+  handleError(err) {
     console.error(err)
   }
 
+
+
   render() {
+
     const previewStyle = {
       height: 240,
       width: 320,
@@ -39,7 +69,6 @@ class Scanner extends Component {
 
     return (
       <div>
-       
         <Layout>
           <Styles>
             <br />
@@ -51,7 +80,8 @@ class Scanner extends Component {
               delay={this.state.delay}
               style={previewStyle}
               onError={this.handleError}
-              onScan={this.handleScan}
+             // onScan={this.scanData}
+              onScan={this.findDuplicate}
             />
             <h1>{this.state.result}</h1>
 
