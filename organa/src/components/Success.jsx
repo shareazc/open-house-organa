@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { Modal, Button } from "react-bootstrap"
 
 export default class ScanSuccessPage extends React.Component {
     constructor(props){
@@ -7,13 +8,25 @@ export default class ScanSuccessPage extends React.Component {
         this.state = {
             redirect: false
         }
-        setTimeout(()=> this.setState({redirect: true}), 3000)    
     }
     render(){
-        if (this.state.redirect){
-            return <Redirect to="/"/>
-        }
-        return <h1> Tu codigo ha sido reconocido exitosamente </h1>
-    }
-   
+        // setTimeout(()=> this.setState({redirect: true}), 3000)    
+        return(
+            <Modal.Dialog>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal title</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                    <p>Modal body text goes here.</p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="secondary">Close</Button>
+                    <Button variant="primary">Save changes</Button>
+                </Modal.Footer>
+            </Modal.Dialog>
+        )
+        
+}
 }
