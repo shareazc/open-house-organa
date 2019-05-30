@@ -20,11 +20,19 @@ class Summary extends React.Component{
         const totalStudentsNumber = firebase.database().ref('totalStudentsInDB');
         attendanceList.on('value', (s) =>{
             let attendanceStudents = s.val();
+            console.log(attendanceStudents);
             for(let attendanceStudent in attendanceStudents){
-                this.setState({
-                    date: attendanceStudents[attendanceStudent].date,
-                    totalAttendance: attendanceStudents[attendanceStudent].total,
-                });
+                console.log(attendanceStudent)
+                attendanceStudents[attendanceStudent].map((total, i)=>{
+                    const totalAttendance = total.total;
+                    this.setState({
+                        date: attendanceStudent,
+                        totalAttendance: totalAttendance.length
+                    });
+                })
+                
+                console.log(this.state.date)
+                console.log(this.state.totalAttendance)
             }
         })
         totalStudentsNumber.on('value', (s)=>{
