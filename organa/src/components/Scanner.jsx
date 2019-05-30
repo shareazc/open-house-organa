@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import { Layout } from './Layout';
 import styled from "styled-components";
+import pnkBrktR from '../assets/PinkBracketsRight.png';
+import pnkBrktL from '../assets/PinkBracketsLeft.png';
+
+//ADD <span className="numbers"> </span> 
+//SO NUMBERS HAVE THE RIGHT FONT
 
 const Styles = styled.div`
   * {
     margin-top: 2rem;
     margin: auto;
     text-align: center;
-  }
-  
+    border-radius: 1rem;
+  }  
 `;
+
+const styleRight = {
+  height: '100px',
+  float: 'right'
+};
+
 
 class Scanner extends Component {
   constructor(props) {
@@ -63,19 +74,18 @@ class Scanner extends Component {
   render() {
 
     const previewStyle = {
-      height: 240,
-      width: 320,
+      //height: 600,
+      width: 400,
     }
 
     return (
       <div>
+        <img className="brackets" src={pnkBrktL} style={{height: 100}} />
         <Layout>
           <Styles>
             <br />
-            <div className="title">
               <h1>¡Bienvenida!</h1>
               <p>Por favor, escanea tu código QR</p>
-            </div>
             <QrReader
               delay={this.state.delay}
               style={previewStyle}
@@ -84,9 +94,10 @@ class Scanner extends Component {
               onScan={this.findDuplicate}
             />
             <h1>{this.state.result}</h1>
-
+            {console.log (this.state.cleanAttendance)}
           </Styles>
         </Layout>
+        <img className="brackets" src={pnkBrktR} style={styleRight} />
       </div>
     )
   }
