@@ -15,7 +15,7 @@ class Attendance extends React.Component{
     }
 
     componentDidMount() {
-        this.numberAttendance(50)
+        this.numberAttendance(50);
     }
 
 
@@ -27,9 +27,9 @@ class Attendance extends React.Component{
 
     render(){
         
-        console.log(this.props.totalAttendance)
-        console.log(this.props.date)
-        console.log(this.state)
+        // console.log(this.props.totalAttendance)
+        // console.log(this.props.date)
+        // console.log(this.state)
         return(
             <Card>
                 <Card.Body>
