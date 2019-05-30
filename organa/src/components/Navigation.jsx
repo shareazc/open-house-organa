@@ -2,7 +2,6 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import LogoLBLK from '../assets/LaboratorialogoBLK.png';
-import LisoBLK from '../assets/LisotipoBLK.png';
 import styled from "styled-components";
 import Date from './Date.jsx';
 

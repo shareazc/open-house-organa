@@ -1,5 +1,4 @@
 import React from 'react';
-import {Card} from 'react-bootstrap'
 import moment from 'moment';
 import firebase from "../firebase/FirebaseConfig"
 
@@ -33,9 +32,7 @@ class SendAttendanceToFirebase extends React.Component{
         console.log(this.props.attendance )
         console.log(moment().format('LL'))
         return(
-            <Card className="text-center">
-               
-            </Card>
+            <div> </div>
         )
     }
 }
