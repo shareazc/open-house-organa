@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/open-house-organa/tree/master/organa/precache-manifest.6332216b4a059032c3d268ed97d3efb0.js"
+  "/open-house-organa/tree/master/organa/precache-manifest.1fa087793095e823f4cee3d63dbc7157.js"
 );
 
 self.addEventListener('message', (event) => {
