@@ -12,12 +12,12 @@ class SendAttendanceToFirebase extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            date:  moment().format('LL')
+            date:  moment().format('ll')
         }
     }
 
     componentDidMount(){
-        let date = moment().format('LL');
+        let date = moment().format('ll');
         const dbRefAttendance = firebase.database().ref();
         const attendanceRef = dbRefAttendance.child('attendance').child(date);
         attendanceRef.set([

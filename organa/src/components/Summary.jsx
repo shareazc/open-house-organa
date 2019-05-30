@@ -29,6 +29,7 @@ class Summary extends React.Component{
                         date: attendanceStudent,
                         totalAttendance: totalAttendance.length
                     });
+                    return totalAttendance;
                 })
                 
                 console.log(this.state.date)
