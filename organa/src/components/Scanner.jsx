@@ -28,27 +28,26 @@ class Scanner extends Component {
     super(props)
     this.state = {
       delay: 1000,
-    /*   result: 'No result', */
+      result: null, 
       attendance: [],
       scanner: [],
       cleanAttendance: []
     }
 
-   /*  this.scanData = this.scanData.bind(this) */
+     this.scanData = this.scanData.bind(this) 
     this.findDuplicate = this.findDuplicate.bind(this)
   }
- /*  scanData(data) {
+   scanData(data) {
     this.setState({
       result: data
     })
-  } */
+  } 
 
   findDuplicate(data) {
     if (data != null) {
       this.setState({
         scanner: data
       })
-      // console.log(this.state.scanner)
       this.setState({
         attendance: [...this.state.attendance, this.state.scanner]
       })
@@ -80,17 +79,17 @@ class Scanner extends Component {
 
     return (
       <div>
+        <br />
         <img className="brackets" src={pnkBrktL} style={{height: 100}} />
         <Layout>
           <Styles>
-            <br />
               <h1>¡Bienvenida!</h1>
               <p>Por favor, escanea tu código QR</p>
             <QrReader
               delay={this.state.delay}
               style={previewStyle}
               onError={this.handleError}
-             // onScan={this.scanData}
+              onScan={this.scanData}
               onScan={this.findDuplicate}
             />
             <h1>{this.state.result}</h1>

@@ -5,14 +5,14 @@ class Attendance extends React.Component{
 
     render(){
         return(
-            <Card>
+            <Card className="text-center">
                 <Card.Body>
                     <Card.Title>Asistencias</Card.Title>
                     <Card.Text>
-                        {this.props.totalAttendance}
+                    <span className="numbers" style={{fontSize:60}}>{this.props.totalAttendance}</span>
                     </Card.Text>
                     <Card.Text>
-                        <small className="text-muted">Total de estudiantes {this.props.totalStudents}</small>
+                        <small className="text-muted">Total de estudiantes <span className="numbers">{this.props.totalStudents}</span></small>
                     </Card.Text>
                 </Card.Body>
             </Card>

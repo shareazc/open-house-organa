@@ -40,6 +40,7 @@ class Summary extends React.Component{
     render(){
         return(
             <Container>
+                <br />
                 <Row>
                     <Col lg={8}><h1 ><Attendance totalAttendance={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h1></Col>
                     <Col lg={4}><h2><Absence list={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h2></Col>

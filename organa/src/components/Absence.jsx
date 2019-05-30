@@ -32,7 +32,7 @@ class Absence extends React.Component{
         // console.log(this.props.date)
         // console.log(this.state)
         return(
-            <Card>
+            <Card className="text-center">
                 <Card.Body>
                     <Card.Title>Inasistencias</Card.Title>
                     <Card.Text>
