@@ -29,11 +29,10 @@ class Summary extends React.Component{
         })
         totalStudentsNumber.on('value', (s)=>{
             let totalStudents = s.val();
-            for(let totalStudent in totalStudents){
+            console.log(totalStudents)
                 this.setState({
-                    totalStudents: totalStudents[totalStudent].totalStudents
+                    totalStudents: totalStudents.totalStudents
                 })
-            }
         })
     }
 
@@ -43,7 +42,7 @@ class Summary extends React.Component{
                 <br />
                 <Row>
                     <Col lg={8}><h1 ><Attendance totalAttendance={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h1></Col>
-                    <Col lg={4}><h2><Absence list={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h2></Col>
+                    <Col lg={4}><h2><Absence totalAttendance={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h2></Col>
                 </Row>
             </Container>
         )

@@ -3,8 +3,8 @@ import {Card} from 'react-bootstrap'
 
 class Absence extends React.Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {
             absence: 0,
@@ -12,25 +12,29 @@ class Absence extends React.Component{
         }
 
         this.numberAbsence = this.numberAbsence.bind(this);
+        console.log(props)
+        this.render()
+        this.numberAbsence(this.props.totalStudents, this.props.totalAttendance);
     }
 
-    componentDidMount(){
-        console.log(this.props.totalAttendance + "componentdidmount")
-        this.numberAbsence(50);
-    }
+    // componentDidMount(){
+    //     console.log(this.props.totalAttendance + "total de asistencias 1")
+    //     console.log(this.props.totalStudents + "total de estudiantes 1")
+    //     this.numberAbsence(this.props.totalStudents, this.props.totalAttendance);
+    //     console.log(this.state.absence)
+    // }
 
-    numberAbsence(){
-        const totalAbsence = 50 - this.props.totalAttendance
-        console.log(this.props.totalAttendance + "1")
+    numberAbsence(totalStudents, totalAttendance){
+        const totalAbsence = totalStudents - totalAttendance
+        console.log(totalStudents + "funcion 2 ")
         this.setState({
             absence: totalAbsence
         })
     }
 
     render(){
-        console.log(this.props.totalAttendance + "render")
-        // console.log(this.props.date)
-        // console.log(this.state)
+        console.log(this.props.totalAttendance + "total de asistencias => render 3")
+        console.log(this.props.totalStudents + "total de estudiantes => render 3")
         return(
             <Card className="text-center">
                 <Card.Body>
