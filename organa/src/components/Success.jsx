@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { Modal, Button } from "react-bootstrap"
 import styled from "styled-components";
 
@@ -22,7 +21,7 @@ export default class ScanSuccessPage extends React.Component {
             <Styles>
             <Modal.Dialog>
                 <Modal.Header closeButton>
-                    <Modal.Title><h3>¡Bienvenida!</h3></Modal.Title>
+                    <Modal.Title><h3>¡Bienvenida! </h3></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>

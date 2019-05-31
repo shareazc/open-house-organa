@@ -29,8 +29,8 @@ class SendAttendanceToFirebase extends React.Component{
     }
 
     render(){
-        console.log(this.props.attendance )
-        console.log(moment().format('LL'))
+        // console.log(this.props.attendance )
+        // console.log(moment().format('LL'))
         return(
 
             <div> </div>
