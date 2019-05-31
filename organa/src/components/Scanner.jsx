@@ -55,7 +55,7 @@ class Scanner extends Component {
       this.setState({
         scanner: data,
       })
-      console.log(typeof(this.state.scanner))
+      // console.log(typeof(this.state.scanner))
       this.setState({
         attendance: [...this.state.attendance, this.state.scanner]
       })

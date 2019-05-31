@@ -17,6 +17,7 @@ export default class ScanSuccessPage extends React.Component {
         }
     }
     render(){
+        console.log(this.props)
         return(
             <Styles>
             <Modal.Dialog>
