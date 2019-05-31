@@ -18,7 +18,6 @@ export default class ScanSuccessPage extends React.Component {
         }
     }
     render(){
-        // setTimeout(()=> this.setState({redirect: true}), 3000)    
         return(
             <Styles>
             <Modal.Dialog>
