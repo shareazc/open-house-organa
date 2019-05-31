@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase/FirebaseConfig';
+import Success from './Success';
 
 class Fetch extends Component {
   constructor(props) {
@@ -8,12 +9,14 @@ class Fetch extends Component {
       data: [],
       totalStudents: 0,
       totalData : [],
-      studentName: {}
+      studentName: {},
+      handleSuccess: false
     }
     this.findStudent = this.findStudent.bind(this)
+    
   }
-
-  componentWillMount() {
+//antes del render
+  componentDidMount() {
     fetch('https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users')
     .then(response => response.json())
     .then(data => {
@@ -23,7 +26,6 @@ class Fetch extends Component {
           totalStudents: filterDataBase.length,
           totalData: filterDataBase
         })
-        // console.log(this.state.totalData)
         const dbReftotalStudents = firebase.database().ref();
         const totalStudentsRef = dbReftotalStudents.child('totalStudentsInDB');
         totalStudentsRef.set(
@@ -31,9 +33,7 @@ class Fetch extends Component {
               totalStudents: this.state.totalStudents
           }
         )
-        // if(this.props.scanId !== null){
           this.findStudent(this.props.scanId, this.state.totalData)
-        // }
         return filterDataBase
     })
 
@@ -53,10 +53,11 @@ class Fetch extends Component {
   }
   
   render() {
-    console.log(this.state.studentName)
+    // console.log(this.state.studentName)
+    
     return (
       <div> 
-
+        {/* {this.state.handleSuccess === true ? <Success name={this.state.studentName}/> : <div></div>} */}
       </div>
     )
   }

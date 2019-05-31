@@ -55,7 +55,7 @@ class Scanner extends Component {
       this.setState({
         scanner: data,
       })
-      console.log(typeof(this.state.scanner))
+      // console.log(typeof(this.state.scanner))
       this.setState({
         attendance: [...this.state.attendance, this.state.scanner]
       })
@@ -77,7 +77,7 @@ class Scanner extends Component {
   render() {
     if(this.state.result !== false){
       setTimeout(()=> this.setState({result: false}), 3000)    
-      return <Success/>
+      return <Success scanId={this.state.scanner}/>
     }
 
 
@@ -104,7 +104,7 @@ class Scanner extends Component {
             <h1>{this.state.result}</h1>
             {/* {console.log (this.state.cleanAttendance)} */}
           </Styles>
-          <Fetch scanId={this.state.scanner}/>
+          {/* <Fetch scanId={this.state.scanner}/> */}
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
