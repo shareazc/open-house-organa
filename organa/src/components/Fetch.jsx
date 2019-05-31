@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../firebase/FirebaseConfig';
-import Success from './Success'
+import Success from './Success';
 
 class Fetch extends Component {
   constructor(props) {
@@ -9,13 +9,14 @@ class Fetch extends Component {
       data: [],
       totalStudents: 0,
       totalData : [],
-      studentName: {}
+      studentName: {},
+      handleSuccess: false
     }
     this.findStudent = this.findStudent.bind(this)
     
   }
-
-  componentWillMount() {
+//antes del render
+  componentDidMount() {
     fetch('https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users')
     .then(response => response.json())
     .then(data => {
@@ -47,16 +48,16 @@ class Fetch extends Component {
         this.setState({
           studentName: name
         })
-        
         return name
       }
   }
   
   render() {
-    console.log(this.state.studentName)
+    // console.log(this.state.studentName)
+    
     return (
       <div> 
-        {/* <Success name={this.state.studentName}/> */}
+        {/* {this.state.handleSuccess === true ? <Success name={this.state.studentName}/> : <div></div>} */}
       </div>
     )
   }

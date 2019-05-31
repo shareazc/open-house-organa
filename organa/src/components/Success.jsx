@@ -1,37 +1,74 @@
 import React from 'react';
-import { Modal, Button } from "react-bootstrap"
+import { Modal } from "react-bootstrap"
+import check from '../assets/check-animation-v2.gif';
 import styled from "styled-components";
 
 const Styles = styled.div`
-    .modal-title {
-
+    .modal-content{
+        text-align: center;
     }
-
 `
 
 export default class ScanSuccessPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            redirect: false
+            redirect: false,
+            data: [],
+            totalStudents: 0,
+            totalData : [],
+            studentName: [],
+            handleSuccess: false
         }
     }
+
+    componentDidMount() {
+        fetch('https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users')
+        .then(response => response.json())
+        .then(data => {
+          const filterDataBase = data.filter(item =>
+            item.role === 'student')
+            this.setState({
+              totalStudents: filterDataBase.length,
+              totalData: filterDataBase
+            })
+            console.log(this.state.totalData)
+            console.log(this.props.scanId)
+              this.findStudent(this.props.scanId, this.state.totalData)
+            return filterDataBase
+        })
+    
+      }
+    
+      findStudent(id, data){
+        const filterName = data.find(item =>
+          item.id === id
+          )
+          if(filterName !== undefined){
+            const name = filterName.name
+            this.setState({
+              studentName: name
+            })
+            return name
+          }
+      }
+      
     render(){
-        console.log(this.props)
+        const finalName = this.state.studentName
         return(
             <Styles>
             <Modal.Dialog>
-                <Modal.Header closeButton>
-                    <Modal.Title><h3>¡Bienvenida! </h3></Modal.Title>
+                <Modal.Header >
+                    <Modal.Title><h2>¡Bienvenida! <h4>{finalName}</h4></h2></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>Tu código ha sido escaneado de manera exitosa. </p>
+                    <img src= {check} alt="success" style={{height: 300}} />
+                    <p>Tu asistencia ha sido registrada exitosamente.</p>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary">Close</Button>
-                    <Button variant="primary">Save changes</Button>
+                   
                 </Modal.Footer>
             </Modal.Dialog>
             </Styles>
