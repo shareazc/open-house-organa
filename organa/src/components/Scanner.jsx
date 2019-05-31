@@ -4,8 +4,9 @@ import { Layout } from './Layout';
 import styled from "styled-components";
 import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
-import Success from "./Success"
-import SendAttendanceToFirebase from './SendAttendanceToFirebase'
+import Success from "./Success";
+import SendAttendanceToFirebase from './SendAttendanceToFirebase';
+import Fetch from './Fetch';
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
@@ -54,11 +55,11 @@ class Scanner extends Component {
       this.setState({
         scanner: data,
       })
-      console.log(this.state.scanner)
+      console.log(typeof(this.state.scanner))
       this.setState({
         attendance: [...this.state.attendance, this.state.scanner]
       })
-      console.log(this.state.attendance)
+      // console.log(this.state.attendance)
       this.setState({
         result: true
       })
@@ -103,7 +104,7 @@ class Scanner extends Component {
             <h1>{this.state.result}</h1>
             {/* {console.log (this.state.cleanAttendance)} */}
           </Styles>
-
+          <Fetch scanId={this.state.scanner}/>
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />

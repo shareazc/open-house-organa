@@ -1,11 +1,10 @@
 import React from 'react';
-import { Modal } from "react-bootstrap"
-import check from '../assets/check-animation-v2.gif';
+import { Modal, Button } from "react-bootstrap"
 import styled from "styled-components";
 
 const Styles = styled.div`
-    .modal-content{
-        text-align: center;
+    .modal-title {
+
     }
 
 `
@@ -18,21 +17,20 @@ export default class ScanSuccessPage extends React.Component {
         }
     }
     render(){
-        // setTimeout(()=> this.setState({redirect: true}), 3000)    
         return(
             <Styles>
             <Modal.Dialog>
-                <Modal.Header >
-                    <Modal.Title><h2>¡Bienvenida!</h2></Modal.Title>
+                <Modal.Header closeButton>
+                    <Modal.Title><h3>¡Bienvenida! </h3></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                    <img src= {check} alt="success" style={{height: 300}} />
-                    <p>Tu asistencia ha sido registrada exitosamente.</p>
+                    <p>Tu código ha sido escaneado de manera exitosa. </p>
                 </Modal.Body>
 
                 <Modal.Footer>
-                   
+                    <Button variant="secondary">Close</Button>
+                    <Button variant="primary">Save changes</Button>
                 </Modal.Footer>
             </Modal.Dialog>
             </Styles>
