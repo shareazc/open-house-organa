@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal } from "react-bootstrap"
 import check from '../assets/check-animation-v2.gif';
 import styled from "styled-components";
+import Fail from './Fail'
 
 const Styles = styled.div`
     .modal-content{
@@ -51,10 +52,17 @@ export default class ScanSuccessPage extends React.Component {
             })
             return name
           }
+          else{
+            this.setState({
+              studentName: "Fail"
+            })
+          }
       }
       
     render(){
+      
         const finalName = this.state.studentName
+        if (finalName != 'Fail'){
         return(
             <Styles>
             <Modal.Dialog>
@@ -72,7 +80,10 @@ export default class ScanSuccessPage extends React.Component {
                 </Modal.Footer>
             </Modal.Dialog>
             </Styles>
-        )
+        )}
         
-}
+         return( <Fail></Fail>)
+        
+        
+      }
 }
