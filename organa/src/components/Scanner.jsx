@@ -6,7 +6,6 @@ import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import Success from "./Success";
 import SendAttendanceToFirebase from './SendAttendanceToFirebase';
-import Fetch from './Fetch';
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
