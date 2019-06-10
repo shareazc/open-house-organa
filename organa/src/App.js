@@ -5,7 +5,6 @@ import  Summary  from './components/Summary';
 import Navigation from './components/Navigation';
 import Success from './components/Success';
 import { NoMatch } from './components/NoMatch';
-import Fetch from "../src/components/Fetch";
 import './App.css';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
          <Route component = {NoMatch} />
        </Switch>
      </Router>
-     <Fetch></Fetch>
     </div>
   );
 }
