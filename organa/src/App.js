@@ -6,30 +6,49 @@ import Navigation from './components/Navigation';
 import Success from './components/Success';
 import { NoMatch } from './components/NoMatch';
 import './App.css';
+import Autentication from './components/Autentication';
+import firebase from "./firebase/FirebaseConfig"
 
 class App extends React.Component {
+    constructor(){
+      super()
 
-  componentDidMount() {
+      this.state = {
+        user: {}
+      }
+    }
+
+    componentDidMount(){
+      this.authListener()
+    }
+
+    authListener(){
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({ user });
+        } else {
+          this.setState({ user: null });
+        }
+      })
+    }
+
+    render() {
+      return (
+        <div className="App">
+          <Router>
+            <Navigation />
+            <Switch>
+              {this.state.user ? (<Scanner />) : (<Autentication />)}
+              <Route path="/summary" component={Summary} />
+              <Route path="/success" component={Success} />
+              <Route component={NoMatch} />
+            </Switch>
+          </Router>
+        </div>
+      );
+    }
+
 
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <Navigation />
-          <Switch>
-            <Route exact path="/" component={Scanner} />
-            <Route path="/summary" component={Summary} />
-            <Route path="/success" component={Success} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
-
-
-}
-
-export default App;
+  export default App;
