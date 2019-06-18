@@ -19,7 +19,18 @@ class App extends React.Component{
     }
   }
   componentDidMount(){
-     this.authListener()
+     this.authListener();
+
+     const doesDateExist = firebase.database()
+      .ref('attendance').child(this.state.date);
+      doesDateExist.on('value', snap=>{
+        let actualDate = snap.val();
+        if(actualDate==null){
+         let newDate = moment().format('ll');   
+          firebase.database().ref('attendance/' + newDate)
+          .set(newDate) 
+      }
+    })
   }
   
     authListener(){
@@ -32,17 +43,6 @@ class App extends React.Component{
       })
     }
   
-      const doesDateExist = firebase.database()
-      .ref('attendance').child(this.state.date);
-      doesDateExist.on('value', snap=>{
-        let actualDate = snap.val();
-        if(actualDate==null){
-         let newDate = moment().format('ll');   
-          firebase.database().ref('attendance/' + newDate)
-          .set(newDate) 
-      }
-    })
-  }
   render(){
  
     return (
