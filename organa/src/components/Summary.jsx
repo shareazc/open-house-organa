@@ -3,6 +3,7 @@ import firebase from '../firebase/FirebaseConfig';
 import Attendance from './Attendance';
 import Absence from './Absence';
 import {Container, Row, Col} from 'react-bootstrap';
+import moment from 'moment';
 
 class Summary extends React.Component{
 
@@ -15,15 +16,16 @@ class Summary extends React.Component{
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         const attendanceList = firebase.database().ref('attendance');
         const totalStudentsNumber = firebase.database().ref('totalStudentsInDB');
         attendanceList.on('value', (s) =>{
             let attendanceStudents = s.val();
             // console.log(attendanceStudents);
             for(let attendanceStudent in attendanceStudents){
-                // console.log(attendanceStudent)
-                attendanceStudents[attendanceStudent].map((total, i)=>{
+                console.log(moment().format('ll'))
+                const currentDate = moment().format("ll");
+                attendanceStudents[currentDate].map((total, i)=>{
                     const totalAttendance = total.total;
                     this.setState({
                         date: attendanceStudent,

@@ -7,20 +7,29 @@ import Success from './components/Success';
 import { NoMatch } from './components/NoMatch';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Navigation />
-        <Switch>
-          <Route exact path="/" component={Scanner} />
-          <Route path="/summary" component={Summary} />
-          <Route path="/success" component={Success} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Router>
-    </div>
-  );
+class App extends React.Component{
+
+  componentDidMount(){
+    
+  }
+
+  render(){
+    return (
+      <div className="App">
+       <Router>
+       <Navigation />
+         <Switch>
+           <Route exact path = "/" component = {Scanner} />
+           <Route path = "/summary" component = {Summary} />
+           <Route path = "/success" component = {Success} />
+           <Route component = {NoMatch} />
+         </Switch>
+       </Router>
+      </div>
+    );
+  }
+  
+
 }
 
 export default App;
