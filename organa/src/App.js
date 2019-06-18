@@ -8,15 +8,30 @@ import { NoMatch } from './components/NoMatch';
 import './App.css';
 import moment from 'moment';
 import firebase from './firebase/FirebaseConfig';
+import Autentication from './components/Autentication';
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-        date:  moment().format('ll')
+        date:  moment().format('ll'),
+        user: {}
     }
   }
   componentDidMount(){
+     this.authListener()
+  }
+  
+    authListener(){
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          this.setState({user});
+        } else {
+          this.setState({user: null});
+        }
+      })
+    }
+  
       const doesDateExist = firebase.database()
       .ref('attendance').child(this.state.date);
       doesDateExist.on('value', snap=>{
@@ -28,8 +43,6 @@ class App extends React.Component{
       }
     })
   }
- 
-
   render(){
  
     return (
@@ -37,7 +50,7 @@ class App extends React.Component{
        <Router>
        <Navigation />
          <Switch>
-           <Route exact path = "/" component = {Scanner} />
+         {this.state.user ? (<Scanner/>) :  (<Autentication/>)}
            <Route path = "/summary" component = {Summary} />
            <Route path = "/success" component = {Success} />
            <Route component = {NoMatch} />
@@ -46,8 +59,6 @@ class App extends React.Component{
       </div>
     );
   }
-  
-
 }
 
 export default App;
