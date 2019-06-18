@@ -33,8 +33,6 @@ export default class ScanSuccessPage extends React.Component {
               totalStudents: filterDataBase.length,
               totalData: filterDataBase
             })
-            console.log(this.state.totalData)
-            console.log(this.props.scanId)
               this.findStudent(this.props.scanId, this.state.totalData)
             return filterDataBase
         })
@@ -62,7 +60,7 @@ export default class ScanSuccessPage extends React.Component {
     render(){
       
         const finalName = this.state.studentName
-        if (finalName != 'Fail'){
+        if (finalName !== 'Fail'){
         return(
             <Styles>
             <Modal.Dialog>
