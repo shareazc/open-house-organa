@@ -4,8 +4,13 @@ import { Layout } from './Layout';
 import styled from "styled-components";
 import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
+import help from '../assets/information.svg';
 import Success from "./Success";
 import SendAttendanceToFirebase from './SendAttendanceToFirebase';
+import Popover from 'react-bootstrap/Popover';
+import { OverlayTrigger } from 'react-bootstrap';
+
+
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
@@ -24,6 +29,29 @@ const styleRight = {
   height: '100px',
   float: 'right'
 };
+
+const helpIcon = {
+  height: '8vh',
+  display: 'block',
+  margin: 'auto'
+}
+
+const popover = (
+  <Popover id="popover-basic" title="¿Necesitas ayuda?">
+      
+      <p>- Coloca el código lo más paralelo posible a la cámara.</p> 
+      <p>- Limpia y sube el brillo a la pantalla del smartphone.</p> 
+      <p>- Verifica que el código que escaneas sea correcto.</p><br />
+      
+      <p><strong>Si el error persiste, busca a unx coach.</strong></p>
+  </Popover>
+);
+
+const Info = () => (
+  <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+    <img className="info" src={help} style={helpIcon} alt="help"></img>
+  </OverlayTrigger>
+);
 
 
 class Scanner extends Component {
@@ -101,7 +129,7 @@ class Scanner extends Component {
     }
 
     return (
-      <div>
+      <div className="scannerScreen">
         <br />
         <img className="brackets" src={pnkBrktL} style={{height: 100}} alt="LabBrackets" />
         <Layout>
@@ -114,14 +142,14 @@ class Scanner extends Component {
               onError={this.handleError}
               onScan={this.findDuplicate}
             />
-
-            <h1>{this.state.result}</h1>
-            {/* {console.log (this.state.cleanAttendance)} */}
+            <h1>{this.state.result}</h1><br />
+            <Info />
           </Styles>
-          {/* <Fetch scanId={this.state.scanner}/> */}
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
+        
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
+        
       </div>
     )
   }

@@ -25,7 +25,6 @@ export default class Fail extends React.Component {
                 <Modal.Body>
                     <img src= {fail} alt="fail" style={{height: 300}} />
                     <p>Tu código QR es incorrecto.</p> <br />
-                    <p>Verifica que el código que escaneas corresponda a una estudiante o sube el brillo a tu smartphone. Si el error persiste, habla con unx coach.</p>
                 </Modal.Body>
             </Modal.Dialog>
             </Styles>
