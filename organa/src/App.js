@@ -29,6 +29,7 @@ class App extends React.Component{
     })
   }
 
+
   doesDateExist(){
     const date =  moment().format('ll');
     const doesDateExist = firebase.database()
@@ -48,6 +49,7 @@ class App extends React.Component{
      this.authListener();
      this.doesDateExist();
    }
+
   render(){
  
     return (
@@ -66,4 +68,4 @@ class App extends React.Component{
   }
 }
 
-export default App;
+  export default App;
