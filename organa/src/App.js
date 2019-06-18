@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Scanner from './components/Scanner';
-import  Summary  from './components/Summary';
+import Summary from './components/Summary';
 import Navigation from './components/Navigation';
 import Success from './components/Success';
 import { NoMatch } from './components/NoMatch';
@@ -29,6 +29,7 @@ class App extends React.Component{
     );
   }
   
+
 }
 
 export default App;
