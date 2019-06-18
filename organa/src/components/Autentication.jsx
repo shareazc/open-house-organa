@@ -1,4 +1,6 @@
 import React from "react";
+import {Button, Form} from "react-bootstrap";
+import firebase from "../firebase/FirebaseConfig"
 
 class Autentication extends React.Component{
     constructor(){
