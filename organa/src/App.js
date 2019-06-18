@@ -36,9 +36,9 @@ class App extends React.Component{
     authListener(){
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          this.setState({user});
+          this.setState({ user });
         } else {
-          this.setState({user: null});
+          this.setState({ user: null });
         }
       })
     }
@@ -61,4 +61,4 @@ class App extends React.Component{
   }
 }
 
-export default App;
+  export default App;

@@ -105,6 +105,7 @@ class Scanner extends Component {
   render() {
     if(this.state.result === "true"){
       setTimeout(()=> this.setState({result: "false"}), 3000)    
+
       return <Success scanId={this.state.scanner}/>
     }else if(this.state.result === "error"){
       setTimeout(()=> this.setState({result: "false"}), 3000)    
