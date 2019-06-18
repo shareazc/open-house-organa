@@ -6,21 +6,20 @@ import Navigation from './components/Navigation';
 import Success from './components/Success';
 import { NoMatch } from './components/NoMatch';
 import './App.css';
+import moment from 'moment';
+import firebase from './firebase/FirebaseConfig';
 import Autentication from './components/Autentication';
-import firebase from "./firebase/FirebaseConfig"
 
 class App extends React.Component{
-
-  constructor(){
-    super();
-
-    this.state ={
-      user: {}
+  constructor(props){
+    super(props);
+    this.state = {
+        date:  moment().format('ll'),
+        user: {}
     }
   }
-
   componentDidMount(){
-    this.authListener()
+     this.authListener()
   }
   
     authListener(){
@@ -32,8 +31,20 @@ class App extends React.Component{
         }
       })
     }
-
+  
+      const doesDateExist = firebase.database()
+      .ref('attendance').child(this.state.date);
+      doesDateExist.on('value', snap=>{
+        let actualDate = snap.val();
+        if(actualDate==null){
+         let newDate = moment().format('ll');   
+          firebase.database().ref('attendance/' + newDate)
+          .set(newDate) 
+      }
+    })
+  }
   render(){
+ 
     return (
       <div className="App">
        <Router>
@@ -48,8 +59,6 @@ class App extends React.Component{
       </div>
     );
   }
-  
-
 }
 
 export default App;
