@@ -50,8 +50,8 @@ class App extends React.Component{
        <Router>
        <Navigation />
          <Switch>
-         {this.state.user ? (<Scanner/>) :  (<Autentication/>)}
-           <Route path = "/summary" component = {Summary} />
+          <Route exact path="/" render={() => this.state.user ? (<Scanner/>) :  (<Autentication/>)} />
+           <Route exact path = "/summary" component = {Summary} />
            <Route path = "/success" component = {Success} />
            <Route component = {NoMatch} />
          </Switch>
