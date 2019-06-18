@@ -7,10 +7,14 @@ import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import help from '../assets/information.svg';
 import Success from "./Success";
 import SendAttendanceToFirebase from './SendAttendanceToFirebase';
+<<<<<<< HEAD
 import Popover from 'react-bootstrap/Popover';
 import { OverlayTrigger } from 'react-bootstrap';
 
 
+=======
+import Fail from './Fail';
+>>>>>>> 365ce1a02fb0632dd75beb98a3a0e03658132a71
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
@@ -60,7 +64,7 @@ class Scanner extends Component {
     this.state = {
 
       delay: 500,
-      result: false, 
+      result: '', 
       attendance: [],
       scanner: []
     }
@@ -81,14 +85,29 @@ class Scanner extends Component {
       this.setState({
         scanner: data,
       })
-      // console.log(typeof(this.state.scanner))
-      this.setState({
-        attendance: [...this.state.attendance, this.state.scanner]
-      })
-      // console.log(this.state.attendance)
-      this.setState({
-        result: true
-      })
+      let duplicateAttendance = this.state.attendance.filter(e =>
+        data === e
+      )
+      console.log(duplicateAttendance)
+      console.log(data);
+      if(duplicateAttendance[0] === data){
+        this.setState({
+          result: 'error'
+        })
+        console.log("error")
+        console.log(this.state.attendance)
+      }else{
+        this.setState({
+          attendance: [...this.state.attendance, this.state.scanner]
+        })
+        this.setState({
+          result: "true"
+        })
+        console.log(this.state.attendance)
+      }
+      // this.setState({
+      //   result: true
+      // })
     }
   }
 
@@ -107,8 +126,6 @@ class Scanner extends Component {
         this.setState({
           totalData: filterDataBase
         })
-        console.log(this.state.totalData)
-        console.log(this.state.scanId)
         //  this.findStudent(this.props.scanId, this.state.totalData)
         return filterDataBase
     })
@@ -117,9 +134,13 @@ class Scanner extends Component {
 
 
   render() {
-    if(this.state.result !== false){
-      setTimeout(()=> this.setState({result: false}), 4000)    
+    if(this.state.result === "true"){
+      setTimeout(()=> this.setState({result: "false"}), 3000)    
+
       return <Success scanId={this.state.scanner}/>
+    }else if(this.state.result === "error"){
+      setTimeout(()=> this.setState({result: "false"}), 3000)    
+      return <Fail />
     }
 
 
@@ -142,8 +163,11 @@ class Scanner extends Component {
               onError={this.handleError}
               onScan={this.findDuplicate}
             />
+<<<<<<< HEAD
             <h1>{this.state.result}</h1><br />
             <Info />
+=======
+>>>>>>> 365ce1a02fb0632dd75beb98a3a0e03658132a71
           </Styles>
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
