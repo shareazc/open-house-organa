@@ -34,8 +34,7 @@ class Scanner extends Component {
       delay: 500,
       result: false, 
       attendance: [],
-      scanner: [],
-      cleanAttendance: []
+      scanner: []
     }
     
 
@@ -71,6 +70,22 @@ class Scanner extends Component {
     console.error(err)
   }
 
+  componentDidMount() {
+    fetch('https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users')
+    .then(response => response.json())
+    .then(data => {
+      const filterDataBase = data.filter(item =>
+        item.role === 'student')
+        this.setState({
+          totalData: filterDataBase
+        })
+        console.log(this.state.totalData)
+        console.log(this.state.scanId)
+        //  this.findStudent(this.props.scanId, this.state.totalData)
+        return filterDataBase
+    })
+
+  }
 
 
   render() {
