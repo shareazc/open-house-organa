@@ -26,7 +26,7 @@ class Autentication extends React.Component{
             console.log(error);
         });
     }
-
+    
     render(){
         return(
             <Form>
