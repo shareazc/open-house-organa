@@ -7,14 +7,11 @@ import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import help from '../assets/information.svg';
 import Success from "./Success";
 import SendAttendanceToFirebase from './SendAttendanceToFirebase';
-<<<<<<< HEAD
 import Popover from 'react-bootstrap/Popover';
 import { OverlayTrigger } from 'react-bootstrap';
 
 
-=======
 import Fail from './Fail';
->>>>>>> 365ce1a02fb0632dd75beb98a3a0e03658132a71
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
@@ -163,11 +160,8 @@ class Scanner extends Component {
               onError={this.handleError}
               onScan={this.findDuplicate}
             />
-<<<<<<< HEAD
             <h1>{this.state.result}</h1><br />
             <Info />
-=======
->>>>>>> 365ce1a02fb0632dd75beb98a3a0e03658132a71
           </Styles>
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
