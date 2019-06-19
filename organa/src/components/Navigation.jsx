@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import LogoLBLK from '../assets/LaboratorialogoBLK.png';
 import styled from "styled-components";
 import Date from './Date.jsx';
-
+import firebase from "../firebase/FirebaseConfig"
 
 const Styles = styled.div`
   .navbar {
@@ -18,6 +18,21 @@ const Styles = styled.div`
 `;
 
 class Navigation extends React.Component {
+
+    constructor(){
+      super();
+      this.logOut = this.logOut.bind(this);
+    }
+
+  logOut(e){
+      e.preventDefault();
+      firebase.auth().signOut().then(function() {
+          console.log("sesion cerrada")
+        }).catch(function(error) {
+          console.log(error)
+        });
+  }
+
   render() {
     return (
       <Styles>
@@ -37,6 +52,11 @@ class Navigation extends React.Component {
               <Nav.Item>
                 <Nav.Link>
                   <Link to="/summary">Resumen</Link>
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link>
+                  <Link to="/" onClick={this.logOut}>Cerrar sesión</Link>
                 </Nav.Link>
               </Nav.Item>
             </Nav>
