@@ -12,7 +12,7 @@ import Fail from './Fail';
 import Popover from 'react-bootstrap/Popover';
 import { OverlayTrigger } from 'react-bootstrap';
 
-//ADD <span className="numbers"> </span> 
+//ADD <span className="numbers"> </span>
 //SO NUMBERS HAVE THE RIGHT FONT
 
 
@@ -22,7 +22,7 @@ const Styles = styled.div`
     margin: auto;
     text-align: center;
     border-radius: 1rem;
-  }  
+  }
 
 `;
 
@@ -39,11 +39,11 @@ const helpIcon = {
 
 const popover = (
   <Popover id="popover-basic" title="¿Necesitas ayuda?">
-      
-      <p>- Coloca el código lo más paralelo posible a la cámara.</p> 
-      <p>- Limpia y sube el brillo a la pantalla del smartphone.</p> 
+
+      <p>- Coloca el código lo más paralelo posible a la cámara.</p>
+      <p>- Limpia y sube el brillo a la pantalla del smartphone.</p>
       <p>- Verifica que el código que escaneas sea correcto.</p><br />
-      
+
       <p><strong>Si el error persiste, busca a unx coach.</strong></p>
   </Popover>
 );
@@ -61,22 +61,22 @@ class Scanner extends Component {
     this.state = {
 
       delay: 500,
-      result: '', 
+      result: '',
       attendance: [],
       scanner: [],
       totalData: []
     }
-    
 
-     this.scanData = this.scanData.bind(this) 
+
+     this.scanData = this.scanData.bind(this)
     this.findDuplicate = this.findDuplicate.bind(this)
   }
    scanData(data) {
     this.setState({
       result: data
     })
-    
-  } 
+
+  }
 
   findDuplicate(data) {
     if (data != null) {
@@ -85,7 +85,7 @@ class Scanner extends Component {
       })
       let duplicateAttendance = this.state.attendance.filter(e =>
         data === e
-      ) 
+      )
 
       const findThirdPartyCode = this.state.totalData.find(item =>
         item.id===data
@@ -129,11 +129,11 @@ class Scanner extends Component {
 
   render() {
     if(this.state.result === "true"){
-      setTimeout(()=> this.setState({result: "false"}), 3000)    
+      setTimeout(()=> this.setState({result: "false"}), 3000)
 
       return <Success scanId={this.state.scanner}/>
     }else if(this.state.result === "error"){
-      setTimeout(()=> this.setState({result: "false"}), 3000)    
+      setTimeout(()=> this.setState({result: "false"}), 3000)
       return <Fail />
     }
 
@@ -160,12 +160,12 @@ class Scanner extends Component {
           </Styles>
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
-        
+
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
-        
+
       </div>
     )
   }
 }
 
-export default Scanner; 
+export default Scanner;

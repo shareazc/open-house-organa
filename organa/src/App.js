@@ -14,7 +14,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-       
+
         user: {}
     }
   }
@@ -35,15 +35,15 @@ class App extends React.Component{
     const doesDateExist = firebase.database()
     .ref('attendance').child(date);
    // console.log(doesDateExist)
-    
+
     doesDateExist.on('value', snap=>{
       let actualDate = snap.exists();
       //console.log(actualDate)
       if(actualDate==false){
         firebase.database().ref('attendance/' + date)
-        .set(date)  
-      } 
-    })   
+        .set(date)
+      }
+    })
   }
   componentDidMount(){
      this.authListener();
@@ -51,7 +51,7 @@ class App extends React.Component{
    }
 
   render(){
- 
+
     return (
       <div className="App">
        <Router>

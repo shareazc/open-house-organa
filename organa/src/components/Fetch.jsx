@@ -12,7 +12,7 @@ class Fetch extends Component {
       handleSuccess: false
     }
     this.findStudent = this.findStudent.bind(this)
-    
+
   }
 //antes del render
   componentDidMount() {
@@ -50,16 +50,16 @@ class Fetch extends Component {
         return name
       }
   }
-  
+
   render() {
     // console.log(this.state.studentName)
-    
+
     return (
-      <div> 
+      <div>
         {/* {this.state.handleSuccess === true ? <Success name={this.state.studentName}/> : <div></div>} */}
       </div>
     )
   }
 }
 
-export default Fetch; 
+export default Fetch;

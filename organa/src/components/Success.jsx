@@ -36,9 +36,9 @@ export default class ScanSuccessPage extends React.Component {
               this.findStudent(this.props.scanId, this.state.totalData)
             return filterDataBase
         })
-    
+
       }
-    
+
       findStudent(id, data){
         const filterName = data.find(item =>
           item.id === id
@@ -56,9 +56,9 @@ export default class ScanSuccessPage extends React.Component {
             })
           }
       }
-      
+
     render(){
-      
+
         const finalName = this.state.studentName
         if (finalName !== 'Fail'){
         return(
@@ -74,14 +74,14 @@ export default class ScanSuccessPage extends React.Component {
                 </Modal.Body>
 
                 <Modal.Footer>
-                   
+
                 </Modal.Footer>
             </Modal.Dialog>
             </Styles>
         )}
-        
+
          return( <Fail></Fail>)
-        
-        
+
+
       }
 }

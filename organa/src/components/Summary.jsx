@@ -33,7 +33,7 @@ class Summary extends React.Component{
                     });
                     return totalAttendance;
                 })
-                
+
                 // console.log(this.state.date)
                 // console.log(this.state.totalAttendance)
             }

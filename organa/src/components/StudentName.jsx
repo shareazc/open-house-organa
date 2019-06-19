@@ -12,14 +12,14 @@ export default class ScanSuccessPage extends React.Component {
         // const data = this.props
         // console.log(data)
         // const name = data.dataFetch.filter((item)=>
-        // item.id === this.props.scanId) 
+        // item.id === this.props.scanId)
         // console.log(name)
         // console.log(this.props.dataFetch)
     // console.log(this.props.scanId)
         return(
          <div></div>
         )
-        
+
 }
 }
 

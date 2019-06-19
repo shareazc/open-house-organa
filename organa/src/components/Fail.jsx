@@ -13,7 +13,7 @@ export default class Fail extends React.Component {
     constructor(props){
         super(props);
     }
-      
+
     render(){
         return(
             <Styles>
@@ -29,6 +29,6 @@ export default class Fail extends React.Component {
             </Modal.Dialog>
             </Styles>
         )
-        
+
 }
 }
