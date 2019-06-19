@@ -7,9 +7,11 @@ import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import help from '../assets/information.svg';
 import Success from "./Success";
 import SendAttendanceToFirebase from './SendAttendanceToFirebase';
+
 import Fail from './Fail';
 import Popover from 'react-bootstrap/Popover';
 import { OverlayTrigger } from 'react-bootstrap';
+
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
 
