@@ -23,18 +23,10 @@ class Summary extends React.Component{
         attendanceList.on('value', (s) =>{
             let attendanceStudents = s.val();
             for(let attendanceStudent in attendanceStudents){
-                attendanceStudents.map((total, i) => {
-                    const totalAttendance = total;
-                    console.log(totalAttendance)
                     this.setState({
                         date: attendanceStudent,
-                        totalAttendance: totalAttendance.length
+                        totalAttendance: attendanceStudents.length -1
                     });
-                    return totalAttendance;
-                })
-                
-                // console.log(this.state.date)
-                // console.log(this.state.totalAttendance)
             }
         })
         totalStudentsNumber.on('value', (s)=>{
