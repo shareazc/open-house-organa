@@ -55,6 +55,13 @@ const Info = () => (
   </OverlayTrigger>
 );
 
+const date = moment().format("ll");
+const dbAttendanceRef = firebase
+      .database()
+      .ref("attendance")
+      .child(date)
+      .child("students");
+
 class Scanner extends Component {
   constructor(props) {
     super(props);
@@ -64,19 +71,13 @@ class Scanner extends Component {
       scanner: [],
       totalData: []
     };
-
-    /* this.scanData = this.scanData.bind(this); */
     this.addAttendanceWithConditions = this.addAttendanceWithConditions.bind(
       this
     );
   }
- /*  scanData(data) {
-    this.setState({
-      result: data
-    });
-  } */
 
   addAttendanceWithConditions(data) {
+    let studentsListFirebase = [];
     if (data != null) {
       this.setState({
         scanner: data,
@@ -85,9 +86,13 @@ class Scanner extends Component {
         item => item.id === data
       );
 
-      //  const findDuplicate =  
+    dbAttendanceRef.once("value", snap => {
+      studentsListFirebase=snap.val()
+  }); 
+  let findStudentDuplicate = studentsListFirebase.filter(i=>
+    data === i)
 
-      if (findThirdPartyCode === undefined) {
+      if (findThirdPartyCode === undefined || findStudentDuplicate[0] ===data) {
          this.setState({
           result: "error"
         }); 
@@ -105,23 +110,8 @@ class Scanner extends Component {
     console.error(err);
   }
   actualiceAttendanceInFirebace(data) {
-    const date = moment().format("ll");
-    const dbAttendanceRef = firebase
-      .database()
-      .ref("attendance")
-      .child(date)
-      .child("students");
-
     dbAttendanceRef.once("value", snap => {
-      // console.log(snap.child('0').child('total').val())
-      console.log(snap.val());
-      if (snap.val() === null) {
-        console.log("snap vacio");
-      } else {
-        console.log("snap: ", snap.val());
-        console.log("data", data);
         dbAttendanceRef.set([...snap.val(), data]);
-      }
     });
   }
 
