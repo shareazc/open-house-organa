@@ -9,11 +9,7 @@ const Styles = styled.div`
     }
 `
 
-export default class Fail extends React.Component {
-    constructor(props){
-        super(props);
-    }
-      
+export default class Fail extends React.Component { 
     render(){
         return(
             <Styles>

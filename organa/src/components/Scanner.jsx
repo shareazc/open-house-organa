@@ -6,7 +6,6 @@ import pnkBrktR from "../assets/PinkBracketsRight.png";
 import pnkBrktL from "../assets/PinkBracketsLeft.png";
 import help from "../assets/information.svg";
 import Success from "./Success";
-/* import SendAttendanceToFirebase from './SendAttendanceToFirebase'; */
 import firebase from "../firebase/FirebaseConfig";
 import Fail from "./Fail";
 import Popover from "react-bootstrap/Popover";
@@ -78,6 +77,7 @@ class Scanner extends Component {
 
   addAttendanceWithConditions(data) {
     let studentsListFirebase = [];
+    let findStudentDuplicate = [];
     if (data != null) {
       this.setState({
         scanner: data,
@@ -88,11 +88,14 @@ class Scanner extends Component {
 
     dbAttendanceRef.once("value", snap => {
       studentsListFirebase=snap.val()
-  }); 
-  let findStudentDuplicate = studentsListFirebase.filter(i=>
-    data === i)
+      if(typeof(studentsListFirebase) === "string"){
+      }else{
+        findStudentDuplicate = studentsListFirebase.find(i=>
+          data === i)
+      }
+  })
 
-      if (findThirdPartyCode === undefined || findStudentDuplicate[0] ===data) {
+  if (findThirdPartyCode === undefined || findStudentDuplicate ===data) {
          this.setState({
           result: "error"
         }); 
