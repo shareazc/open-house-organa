@@ -12,6 +12,7 @@ import Popover from "react-bootstrap/Popover";
 import { OverlayTrigger } from "react-bootstrap";
 import moment from "moment";
 
+
 //ADD <span className="numbers"> </span>
 //SO NUMBERS HAVE THE RIGHT FONT
 
@@ -166,6 +167,7 @@ class Scanner extends Component {
               onScan={this.addAttendanceWithConditions}
             />
           </Styles>
+          {Info()}
         </Layout>
         <img
           className="brackets"
