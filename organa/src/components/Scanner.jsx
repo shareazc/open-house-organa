@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import QrReader from 'react-qr-scanner';
-import { Layout } from './Layout';
+import React, { Component } from "react";
+import QrReader from "react-qr-scanner";
+import { Layout } from "./Layout";
 import styled from "styled-components";
-import pnkBrktR from '../assets/PinkBracketsRight.png';
-import pnkBrktL from '../assets/PinkBracketsLeft.png';
-import help from '../assets/information.svg';
+import pnkBrktR from "../assets/PinkBracketsRight.png";
+import pnkBrktL from "../assets/PinkBracketsLeft.png";
+import help from "../assets/information.svg";
 import Success from "./Success";
 /* import SendAttendanceToFirebase from './SendAttendanceToFirebase'; */
-import firebase from "../firebase/FirebaseConfig"
-import Fail from './Fail';
-import Popover from 'react-bootstrap/Popover';
-import { OverlayTrigger } from 'react-bootstrap';
-import moment from 'moment';
+import firebase from "../firebase/FirebaseConfig";
+import Fail from "./Fail";
+import Popover from "react-bootstrap/Popover";
+import { OverlayTrigger } from "react-bootstrap";
+import moment from "moment";
 
-//ADD <span className="numbers"> </span> 
+//ADD <span className="numbers"> </span>
 //SO NUMBERS HAVE THE RIGHT FONT
-
 
 const Styles = styled.div`
   * {
@@ -23,143 +22,146 @@ const Styles = styled.div`
     margin: auto;
     text-align: center;
     border-radius: 1rem;
-  }  
-
+  }
 `;
 
 const styleRight = {
-  height: '100px',
-  float: 'right'
+  height: "100px",
+  float: "right"
 };
 
 const helpIcon = {
-  height: '8vh',
-  display: 'block',
-  margin: 'auto'
-}
+  height: "8vh",
+  display: "block",
+  margin: "auto"
+};
 
 const popover = (
   <Popover id="popover-basic" title="¿Necesitas ayuda?">
-      
-      <p>- Coloca el código lo más paralelo posible a la cámara.</p> 
-      <p>- Limpia y sube el brillo a la pantalla del smartphone.</p> 
-      <p>- Verifica que el código que escaneas sea correcto.</p><br />
-      
-      <p><strong>Si el error persiste, busca a unx coach.</strong></p>
+    <p>- Coloca el código lo más paralelo posible a la cámara.</p>
+    <p>- Limpia y sube el brillo a la pantalla del smartphone.</p>
+    <p>- Verifica que el código que escaneas sea correcto.</p>
+    <br />
+
+    <p>
+      <strong>Si el error persiste, busca a unx coach.</strong>
+    </p>
   </Popover>
 );
 
 const Info = () => (
   <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-    <img className="info" src={help} style={helpIcon} alt="help"></img>
+    <img className="info" src={help} style={helpIcon} alt="help" />
   </OverlayTrigger>
 );
 
-
 class Scanner extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-
       delay: 500,
-      result: '', 
+      result: "",
       scanner: [],
       totalData: []
-    }
-    
+    };
 
-     this.scanData = this.scanData.bind(this) 
-    this.addAttendanceWithConditions = this.addAttendanceWithConditions.bind(this)
+    this.scanData = this.scanData.bind(this);
+    this.addAttendanceWithConditions = this.addAttendanceWithConditions.bind(
+      this
+    );
   }
-   scanData(data) {
+  scanData(data) {
     this.setState({
       result: data
-    })
-    
-  } 
+    });
+  }
 
   addAttendanceWithConditions(data) {
     if (data != null) {
-       const findThirdPartyCode = this.state.totalData.find(item =>
-        item.id===data
-        )
+      const findThirdPartyCode = this.state.totalData.find(
+        item => item.id === data
+      );
 
-      /*   const findDuplicate =  */ 
-      if(findThirdPartyCode === undefined){
+      /*   const findDuplicate =  */
+
+      if (findThirdPartyCode === undefined) {
         this.setState({
-          result: 'error'
-        })
-        }else{ 
-          this.actualiceAttendanceInFirebace(data)
-          this.setState({
-            result: "true"
-          })
-       }
+          result: "error"
+        });
+      } else {
+        this.actualiceAttendanceInFirebace(data);
+        this.setState({
+          result: "true"
+        });
+      }
     }
   }
 
-
-
   handleError(err) {
-    console.error(err)
+    console.error(err);
   }
-  actualiceAttendanceInFirebace(data){
-    const date =  moment().format('ll');
-    const dbAttendanceRef = firebase.database()
-    .ref('attendance').child(date).child('students');
+  actualiceAttendanceInFirebace(data) {
+    const date = moment().format("ll");
+    const dbAttendanceRef = firebase
+      .database()
+      .ref("attendance")
+      .child(date)
+      .child("students");
 
-    dbAttendanceRef.once('value', snap=>{
-    // console.log(snap.child('0').child('total').val())
-    console.log(snap.val())
-        if (snap.val()===null){
-          console.log('snap vacio')
-        }else{
-            console.log('snap: ', snap.val())
-            console.log('data', data)
-              dbAttendanceRef.set(
-                [...snap.val(), data]
-            );        
-        }
-    })
+    dbAttendanceRef.once("value", snap => {
+      // console.log(snap.child('0').child('total').val())
+      console.log(snap.val());
+      if (snap.val() === null) {
+        console.log("snap vacio");
+      } else {
+        console.log("snap: ", snap.val());
+        console.log("data", data);
+        dbAttendanceRef.set([...snap.val(), data]);
+      }
+    });
   }
 
   componentDidMount() {
-    fetch('https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users')
-    .then(response => response.json())
-    .then(data => {
-      const filterDataBase = data.filter(item =>
-        item.role === 'student')
+    fetch(
+      "https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users"
+    )
+      .then(response => response.json())
+      .then(data => {
+        const filterDataBase = data.filter(item => item.role === "student");
         this.setState({
           totalData: filterDataBase
-        })
-        return filterDataBase
-    })
-  
+        });
+        return filterDataBase;
+      });
   }
   render() {
-    if(this.state.result === "true"){
-      setTimeout(()=> this.setState({result: "false"}), 3000)    
+    if (this.state.result === "true") {
+      setTimeout(() => this.setState({ result: "false" }), 3000);
 
-      return <Success scanId={this.state.scanner}/>
-    }else if(this.state.result === "error"){
-      setTimeout(()=> this.setState({result: "false"}), 3000)    
-      return <Fail />
+      return <Success scanId={this.state.scanner} />;
+    } else if (this.state.result === "error") {
+      setTimeout(() => this.setState({ result: "false" }), 3000);
+      return <Fail />;
     }
-
 
     const previewStyle = {
       //height: 600,
-      width: 400,
-    }
+      width: 400
+    };
 
     return (
       <div className="scannerScreen">
         <br />
-        <img className="brackets" src={pnkBrktL} style={{height: 100}} alt="LabBrackets" />
+        <img
+          className="brackets"
+          src={pnkBrktL}
+          style={{ height: 100 }}
+          alt="LabBrackets"
+        />
         <Layout>
           <Styles>
-              <h1>¡Bienvenida!</h1>
-              <p>Por favor, escanea tu código QR</p>
+            <h1>¡Bienvenida!</h1>
+            <p>Por favor, escanea tu código QR</p>
             <QrReader
               delay={this.state.delay}
               style={previewStyle}
@@ -168,13 +170,17 @@ class Scanner extends Component {
             />
           </Styles>
         </Layout>
-      {/*  <SendAttendanceToFirebase attendance={this.state.attendance}/> 
+        {/*  <SendAttendanceToFirebase attendance={this.state.attendance}/>
          */}
-        <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
-        
+        <img
+          className="brackets"
+          src={pnkBrktR}
+          style={styleRight}
+          alt="LabBrackets"
+        />
       </div>
-    )
+    );
   }
 }
 
-export default Scanner; 
+export default Scanner;
