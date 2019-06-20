@@ -55,6 +55,13 @@ const Info = () => (
   </OverlayTrigger>
 );
 
+const date = moment().format("ll");
+const dbAttendanceRef = firebase
+      .database()
+      .ref("attendance")
+      .child(date)
+      .child("students");
+
 class Scanner extends Component {
   constructor(props) {
     super(props);
@@ -64,36 +71,38 @@ class Scanner extends Component {
       scanner: [],
       totalData: []
     };
-
-    this.scanData = this.scanData.bind(this);
     this.addAttendanceWithConditions = this.addAttendanceWithConditions.bind(
       this
     );
   }
-  scanData(data) {
-    this.setState({
-      result: data
-    });
-  }
 
   addAttendanceWithConditions(data) {
+    let studentsListFirebase = [];
     if (data != null) {
-      const findThirdPartyCode = this.state.totalData.find(
+      this.setState({
+        scanner: data,
+      })
+       const findThirdPartyCode = this.state.totalData.find(
         item => item.id === data
       );
 
-      /*   const findDuplicate =  */
+    dbAttendanceRef.once("value", snap => {
+      studentsListFirebase=snap.val()
+  }); 
+  let findStudentDuplicate = studentsListFirebase.filter(i=>
+    data === i)
 
-      if (findThirdPartyCode === undefined) {
-        this.setState({
+      if (findThirdPartyCode === undefined || findStudentDuplicate[0] ===data) {
+         this.setState({
           result: "error"
-        });
+        }); 
       } else {
-        this.actualiceAttendanceInFirebace(data);
         this.setState({
           result: "true"
         });
+        this.actualiceAttendanceInFirebace(data);
       }
+       
     }
   }
 
@@ -101,23 +110,8 @@ class Scanner extends Component {
     console.error(err);
   }
   actualiceAttendanceInFirebace(data) {
-    const date = moment().format("ll");
-    const dbAttendanceRef = firebase
-      .database()
-      .ref("attendance")
-      .child(date)
-      .child("students");
-
     dbAttendanceRef.once("value", snap => {
-      // console.log(snap.child('0').child('total').val())
-      console.log(snap.val());
-      if (snap.val() === null) {
-        console.log("snap vacio");
-      } else {
-        console.log("snap: ", snap.val());
-        console.log("data", data);
         dbAttendanceRef.set([...snap.val(), data]);
-      }
     });
   }
 
@@ -137,11 +131,11 @@ class Scanner extends Component {
   render() {
     if (this.state.result === "true") {
       setTimeout(() => this.setState({ result: "false" }), 3000);
+      return <Success scanId={this.state.scanner}/>;
 
-      return <Success scanId={this.state.scanner} />;
     } else if (this.state.result === "error") {
       setTimeout(() => this.setState({ result: "false" }), 3000);
-      return <Fail />;
+      return <Fail/>;
     }
 
     const previewStyle = {
@@ -170,8 +164,6 @@ class Scanner extends Component {
             />
           </Styles>
         </Layout>
-        {/*  <SendAttendanceToFirebase attendance={this.state.attendance}/>
-         */}
         <img
           className="brackets"
           src={pnkBrktR}
