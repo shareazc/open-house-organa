@@ -65,35 +65,39 @@ class Scanner extends Component {
       totalData: []
     };
 
-    this.scanData = this.scanData.bind(this);
+    /* this.scanData = this.scanData.bind(this); */
     this.addAttendanceWithConditions = this.addAttendanceWithConditions.bind(
       this
     );
   }
-  scanData(data) {
+ /*  scanData(data) {
     this.setState({
       result: data
     });
-  }
+  } */
 
   addAttendanceWithConditions(data) {
     if (data != null) {
-      const findThirdPartyCode = this.state.totalData.find(
+      this.setState({
+        scanner: data,
+      })
+       const findThirdPartyCode = this.state.totalData.find(
         item => item.id === data
       );
 
-      /*   const findDuplicate =  */
+      //  const findDuplicate =  
 
       if (findThirdPartyCode === undefined) {
-        this.setState({
+         this.setState({
           result: "error"
-        });
+        }); 
       } else {
-        this.actualiceAttendanceInFirebace(data);
         this.setState({
           result: "true"
         });
+        this.actualiceAttendanceInFirebace(data);
       }
+       
     }
   }
 
@@ -137,11 +141,11 @@ class Scanner extends Component {
   render() {
     if (this.state.result === "true") {
       setTimeout(() => this.setState({ result: "false" }), 3000);
+      return <Success scanId={this.state.scanner}/>;
 
-      return <Success scanId={this.state.scanner} />;
     } else if (this.state.result === "error") {
       setTimeout(() => this.setState({ result: "false" }), 3000);
-      return <Fail />;
+      return <Fail/>;
     }
 
     const previewStyle = {
@@ -170,8 +174,6 @@ class Scanner extends Component {
             />
           </Styles>
         </Layout>
-        {/*  <SendAttendanceToFirebase attendance={this.state.attendance}/>
-         */}
         <img
           className="brackets"
           src={pnkBrktR}
