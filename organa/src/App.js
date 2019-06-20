@@ -14,35 +14,42 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-        date:  moment().format('ll'),
+       
         user: {}
     }
   }
-  componentDidMount(){
-     this.authListener();
 
-     const doesDateExist = firebase.database()
-      .ref('attendance').child(this.state.date);
-      doesDateExist.on('value', snap=>{
-        let actualDate = snap.val();
-        if(actualDate==null){
-         let newDate = moment().format('ll');   
-          firebase.database().ref('attendance/' + newDate)
-          .set(newDate) 
+  authListener(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({user});
+      } else {
+        this.setState({user: null});
       }
     })
   }
-  
-    authListener(){
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          this.setState({ user });
-        } else {
-          this.setState({ user: null });
-        }
-      })
-    }
-  
+
+
+   doesDateExist(){
+    const date =  moment().format('ll');
+    const doesDateExistRef = firebase.database()
+    .ref('attendance').child(date);
+   // console.log(doesDateExist)
+    
+    doesDateExistRef.on('value', snap=>{
+      let actualDate = snap.exists();
+      //console.log(actualDate)
+      if(!actualDate){
+        firebase.database().ref('attendance').child( date).child('students')
+        .set("0");  
+      } 
+    })   
+  } 
+  componentDidMount(){
+     this.authListener();
+     this.doesDateExist()
+   }
+
   render(){
  
     return (

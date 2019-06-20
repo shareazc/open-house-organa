@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const Styles = styled.div`
   .loginScreen {
-    -background-color: #f1f1f1;
+    background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
     height: 80vh;
@@ -15,7 +15,7 @@ const Styles = styled.div`
   }
 
   .greeting {
-    align-self: flex-start;
+    align-self: center;
   }
 
   .loginForm {
@@ -23,7 +23,6 @@ const Styles = styled.div`
   }
 
   .loginButton {
-    align-self: flex-end;
     height: 100px;
     text-align: center;
   }

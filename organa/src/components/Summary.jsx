@@ -17,16 +17,15 @@ class Summary extends React.Component{
     }
 
     componentWillMount(){
-        const attendanceList = firebase.database().ref('attendance');
+        const currentDate = moment().format("ll");
+        const attendanceList = firebase.database().ref('attendance').child(currentDate).child("students");
         const totalStudentsNumber = firebase.database().ref('totalStudentsInDB');
         attendanceList.on('value', (s) =>{
             let attendanceStudents = s.val();
-            // console.log(attendanceStudents);
             for(let attendanceStudent in attendanceStudents){
-                console.log(moment().format('ll'))
-                const currentDate = moment().format("ll");
-                attendanceStudents[currentDate].map((total, i)=>{
-                    const totalAttendance = total.total;
+                attendanceStudents.map((total, i) => {
+                    const totalAttendance = total;
+                    console.log(totalAttendance)
                     this.setState({
                         date: attendanceStudent,
                         totalAttendance: totalAttendance.length
