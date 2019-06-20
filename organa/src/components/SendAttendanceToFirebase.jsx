@@ -1,3 +1,6 @@
+/////THIS COMPONENT IS NOT USING
+
+
 import React from 'react';
 import moment from 'moment';
 import firebase from "../firebase/FirebaseConfig"
@@ -13,7 +16,7 @@ class SendAttendanceToFirebase extends React.Component{
         super(props);
         this.state = {
             date:  moment().format('ll')
-        }
+        } 
     }
     
     componentDidMount(){
@@ -23,7 +26,7 @@ class SendAttendanceToFirebase extends React.Component{
         attendanceRef.update([
             {
                 
-                total: this.props.attendance
+                total: [...this.props.attendance]
             }
         ]); 
     }

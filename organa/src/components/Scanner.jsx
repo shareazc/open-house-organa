@@ -6,11 +6,12 @@ import pnkBrktR from '../assets/PinkBracketsRight.png';
 import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import help from '../assets/information.svg';
 import Success from "./Success";
-import SendAttendanceToFirebase from './SendAttendanceToFirebase';
-
+/* import SendAttendanceToFirebase from './SendAttendanceToFirebase'; */
+import firebase from "../firebase/FirebaseConfig"
 import Fail from './Fail';
 import Popover from 'react-bootstrap/Popover';
 import { OverlayTrigger } from 'react-bootstrap';
+import moment from 'moment';
 
 //ADD <span className="numbers"> </span> 
 //SO NUMBERS HAVE THE RIGHT FONT
@@ -62,14 +63,13 @@ class Scanner extends Component {
 
       delay: 500,
       result: '', 
-      attendance: [],
       scanner: [],
       totalData: []
     }
     
 
      this.scanData = this.scanData.bind(this) 
-    this.findDuplicate = this.findDuplicate.bind(this)
+    this.addAttendanceWithConditions = this.addAttendanceWithConditions.bind(this)
   }
    scanData(data) {
     this.setState({
@@ -78,27 +78,19 @@ class Scanner extends Component {
     
   } 
 
-  findDuplicate(data) {
+  addAttendanceWithConditions(data) {
     if (data != null) {
-      this.setState({
-        scanner: data,
-      })
-      let duplicateAttendance = this.state.attendance.filter(e =>
-        data === e
-      ) 
-
-      const findThirdPartyCode = this.state.totalData.find(item =>
+       const findThirdPartyCode = this.state.totalData.find(item =>
         item.id===data
         )
-      if(duplicateAttendance[0] === data || findThirdPartyCode === undefined){
+
+      /*   const findDuplicate =  */ 
+      if(findThirdPartyCode === undefined){
         this.setState({
           result: 'error'
         })
-        }else{
-          this.setState({
-            attendance: [...this.state.attendance, this.state.scanner]
-          })
-          console.log(this.state.attendance)
+        }else{ 
+          this.actualiceAttendanceInFirebace(data)
           this.setState({
             result: "true"
           })
@@ -110,6 +102,25 @@ class Scanner extends Component {
 
   handleError(err) {
     console.error(err)
+  }
+  actualiceAttendanceInFirebace(data){
+    const date =  moment().format('ll');
+    const dbAttendanceRef = firebase.database()
+    .ref('attendance').child(date).child('students');
+
+    dbAttendanceRef.once('value', snap=>{
+    // console.log(snap.child('0').child('total').val())
+    console.log(snap.val())
+        if (snap.val()===null){
+          console.log('snap vacio')
+        }else{
+            console.log('snap: ', snap.val())
+            console.log('data', data)
+              dbAttendanceRef.set(
+                [...snap.val(), data]
+            );        
+        }
+    })
   }
 
   componentDidMount() {
@@ -123,10 +134,8 @@ class Scanner extends Component {
         })
         return filterDataBase
     })
-
+  
   }
-
-
   render() {
     if(this.state.result === "true"){
       setTimeout(()=> this.setState({result: "false"}), 3000)    
@@ -155,12 +164,12 @@ class Scanner extends Component {
               delay={this.state.delay}
               style={previewStyle}
               onError={this.handleError}
-              onScan={this.findDuplicate}
+              onScan={this.addAttendanceWithConditions}
             />
           </Styles>
         </Layout>
-        <SendAttendanceToFirebase attendance={this.state.attendance}/>
-        
+      {/*  <SendAttendanceToFirebase attendance={this.state.attendance}/> 
+         */}
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />
         
       </div>
