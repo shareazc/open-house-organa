@@ -7,9 +7,8 @@ import pnkBrktL from '../assets/PinkBracketsLeft.png';
 import Success from "./Success";
 import SendAttendanceToFirebase from './SendAttendanceToFirebase';
 import Fail from './Fail';
-//ADD <span className="numbers"> </span> 
-//SO NUMBERS HAVE THE RIGHT FONT
-
+import moment from 'moment';
+import firebase from "../firebase/FirebaseConfig"
 
 const Styles = styled.div`
   * {
@@ -35,11 +34,12 @@ class Scanner extends Component {
       delay: 500,
       result: '', 
       attendance: [],
-      scanner: []
+      scanner: [],
+      showQRScanner: true
     }
     
 
-     this.scanData = this.scanData.bind(this) 
+    this.scanData = this.scanData.bind(this) 
     this.findDuplicate = this.findDuplicate.bind(this)
   }
    scanData(data) {
@@ -50,37 +50,38 @@ class Scanner extends Component {
   } 
 
   findDuplicate(data) {
-    if (data != null) {
-      this.setState({
-        scanner: data,
-      })
-      let duplicateAttendance = this.state.attendance.filter(e =>
-        data === e
-      )
-      console.log(duplicateAttendance)
-      console.log(data);
-      if(duplicateAttendance[0] === data){
-        this.setState({
-          result: 'error'
+    if (data !== null) {
+      const date = moment().format("ll");
+      const dbRefAttendance = firebase.database().ref();
+      const attendanceRef = dbRefAttendance.child("attendance").child(date);
+      this.setState({ showQRScanner: false });
+      let shouldInsert = true;
+
+      attendanceRef
+        .once("value", snap => {
+          const dailyAttendance = Object.entries(snap.val());
+          let studentIds = [];
+
+          dailyAttendance.forEach(([id, value]) => {
+            studentIds.push(value[0].total);
+            console.log(studentIds)
+          });
+          shouldInsert = studentIds.includes(data) ? false : true;
         })
-        console.log("error")
-        console.log(this.state.attendance)
-      }else{
-        this.setState({
-          attendance: [...this.state.attendance, this.state.scanner]
-        })
-        this.setState({
-          result: "true"
-        })
-        console.log(this.state.attendance)
-      }
-      // this.setState({
-      //   result: true
-      // })
+        .then(() => {
+          if (shouldInsert) {
+            this.setState({ result: "true" })
+            attendanceRef.push([
+              {
+                total: data
+              }
+            ]);
+          }else{
+            this.setState({ result : "error"})
+          }
+        });
     }
   }
-
-
 
   handleError(err) {
     console.error(err)
@@ -95,17 +96,17 @@ class Scanner extends Component {
         this.setState({
           totalData: filterDataBase
         })
-        //  this.findStudent(this.props.scanId, this.state.totalData)
         return filterDataBase
     })
 
   }
 
+  handleShowQRScanner = () => this.setState({ showQRScanner: true });
+
 
   render() {
     if(this.state.result === "true"){
       setTimeout(()=> this.setState({result: "false"}), 3000)    
-
       return <Success scanId={this.state.scanner}/>
     }else if(this.state.result === "error"){
       setTimeout(()=> this.setState({result: "false"}), 3000)    
@@ -126,14 +127,21 @@ class Scanner extends Component {
           <Styles>
               <h1>¡Bienvenida!</h1>
               <p>Por favor, escanea tu código QR</p>
-            <QrReader
+                {this.state.showQRScanner ? (
+                  <QrReader
+                    delay={this.state.delay}
+                    style={previewStyle}
+                    onError={this.handleError}
+                    onScan={this.findDuplicate}
+                  />
+                ) : <button onClick={this.handleShowQRScanner}>Gracias!</button>}
+            {/* <QrReader
               delay={this.state.delay}
               style={previewStyle}
               onError={this.handleError}
               onScan={this.findDuplicate}
-            />
+            /> */}
           </Styles>
-          {/* <Fetch scanId={this.state.scanner}/> */}
         </Layout>
         <SendAttendanceToFirebase attendance={this.state.attendance}/>
         <img className="brackets" src={pnkBrktR} style={styleRight} alt="LabBrackets" />

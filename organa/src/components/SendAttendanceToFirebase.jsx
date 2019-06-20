@@ -2,11 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import firebase from "../firebase/FirebaseConfig"
 
-/* export default function Date (){
-    return <h5> {moment().format('lll')}</h5>
-} */
-
-
 class SendAttendanceToFirebase extends React.Component{
 
     constructor(props){
@@ -16,25 +11,20 @@ class SendAttendanceToFirebase extends React.Component{
         }
     }
     
-    componentDidMount(){
-        // let date = moment().format('ll');
-        // const dbRefAttendance = firebase.database().ref();
-        // const attendanceRef = dbRefAttendance.child('attendance').child(date);
-        // attendanceRef.set([
-        //     {
-                
-        //         total: this.props.attendance
-        //     }
-        // ]);
+    componentWillMount(){
+        let date = moment().format('ll');
+        const dbRefAttendance = firebase.database().ref();
+        const attendanceRef = dbRefAttendance.child('attendance').child(date);
+        attendanceRef.push([
+            {
+                total: this.props.attendance
+            }
+        ]);
     }
 
     render(){
-        // console.log(this.props.attendance )
-        // console.log(moment().format('LL'))
         return(
-
             <div> </div>
-
         )
     }
 }
