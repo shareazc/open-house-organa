@@ -32,22 +32,22 @@ class App extends React.Component {
 
   doesDateExist() {
     const date = moment().format('ll');
-    const doesDateExist = firebase.database()
+    const doesDateExistRef = firebase.database()
       .ref('attendance').child(date);
     // console.log(doesDateExist)
 
-    doesDateExist.on('value', snap => {
+    doesDateExistRef.on('value', snap => {
       let actualDate = snap.exists();
       //console.log(actualDate)
-      if (actualDate == false) {
-        firebase.database().ref('attendance/' + date)
-          .set(date)
+      if (!actualDate) {
+        firebase.database().ref('attendance').child(date).child('students')
+          .set("0");
       }
     })
   }
   componentDidMount() {
     this.authListener();
-    this.doesDateExist();
+    this.doesDateExist()
   }
 
   render() {
