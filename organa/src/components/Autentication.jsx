@@ -7,7 +7,6 @@ import styled from "styled-components";
 
 const Styles = styled.div`
   .loginScreen {
-    background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
     height: 80vh;
