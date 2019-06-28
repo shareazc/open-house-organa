@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import AquaBrcktR from "../assets/AquabrkR2.png";
-import { Card, Button } from 'react-bootstrap'
+import styled from "styled-components";
+import { Card, Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
 const Styles = styled.div`
     .detailButton {
@@ -10,31 +10,29 @@ const Styles = styled.div`
     }
 
     p, .p {
-        font-size: 0.7em;
         margin-bottom: 0;
     }
-`
+`;
 
 const styleRight = {
     height: "4rem",
-    float: "right"
+    float: "right" 
 };
 
-class Absence extends React.Component{
-
-    render(){
-        const totalAbsence =  this.props.totalStudents - this.props.totalAttendance 
-        return(
-            <Styles>
+class DetailedList extends React.Component {
+    render() {
+    return (
+        <Styles>
             <Card className="text-center">
                 <Card.Body>
-                    <Card.Title><h4>Inasistencias</h4></Card.Title>
+                    <Card.Title><h3>Lista completa de estudiantes</h3></Card.Title>
+                    <Card.Text />
                     <Card.Text>
-                    <span className="numbers" style={{fontSize:50}}>{totalAbsence}</span>
                     <div className="detailButton">
-                    <Link to="/absence-detailed">
+                        <Link to="/full-list">
                         <Button
-                        variant="outline-light">
+                        variant="outline-light"
+                        >
                         <img
                             className="brackets"
                             src={AquaBrcktR}
@@ -43,14 +41,14 @@ class Absence extends React.Component{
                         />
                         </Button>
                         <small className="text-muted"><p>Ver</p></small>
-                    </Link>
+                        </Link>
                     </div>
                     </Card.Text>
                 </Card.Body>
             </Card>
-            </Styles>
-        )
+        </Styles>
+    );
     }
 }
 
-export default Absence;
+export default DetailedList;

@@ -1,7 +1,19 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
+import {Layout} from './Layout';
 import moment from "moment";
 import firebase from '../firebase/FirebaseConfig';
+import styled from 'styled-components';
+
+const Styles = styled.div`
+    img {
+        height: 20rem;
+        z-index: -10;
+        position: fixed; 
+        bottom: 0px; 
+        right: 0px;
+    }
+`
 
 const date = moment().format("ll");
 const dbAttendanceRef = firebase
@@ -51,24 +63,52 @@ export default class TableAttendanceWithName extends React.Component {
     render(){
        let attendanceWithName = this.state.attendanceWithName.map(name=>{
            return(
-           <Col>{name} </Col>
+           <tr>
+                <td>{name}</td> 
+            </tr>
            )
        })
         let absenceWithName=this.state.absenceWithName.map(i=>{
             return(
-                <Col>{i}</Col>
+                <tr>
+                    <td>{i}</td>
+                </tr>
             )
         })
 
         return(
-         <div> <Row>
-         <Col lg={8}><h2 >Asistencias</h2>
-         {attendanceWithName}
-         </Col>
-         <Col lg={4}><h2>Ausencias</h2>
-         {absenceWithName}
-         </Col>
-     </Row></div>
+        <Styles>
+            <div> 
+                <Layout> <br />
+                
+                {/* <Table responsive>
+                    <thead>
+                        <tr>
+                            <th>Asistencias</th>
+                            <th>Ausencias</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{attendanceWithName}</td>
+                        </tr>
+                        <tr>
+                            <td>{absenceWithName}</td>
+                        </tr>
+                    </tbody>
+                </Table> */}
+
+                <Row>
+                    <Col lg={8}><h2 >Asistencias</h2>
+                        {attendanceWithName}
+                    </Col>
+                    <Col lg={4}><h2>Ausencias</h2>
+                        {absenceWithName}
+                    </Col>
+                </Row>
+                </Layout>
+            </div>
+        </Styles>
         )
     }
 }

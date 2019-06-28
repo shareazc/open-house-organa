@@ -4,11 +4,13 @@ import Scanner from './components/Scanner';
 import Summary from './components/Summary';
 import Navigation from './components/Navigation';
 import Success from './components/Success';
+import AbsenceList from './components/AbsenceList';
 import { NoMatch } from './components/NoMatch';
 import './App.css';
 import moment from 'moment';
 import firebase from './firebase/FirebaseConfig';
 import Autentication from './components/Autentication';
+import TableAttendanceWithName from './components/TableAttendanceWithName';
 
 class App extends React.Component {
     constructor(props) {
@@ -52,30 +54,20 @@ class App extends React.Component {
 
     render() {
 
-        return ( <
-            div className = "App" >
-            <
-            Router >
-            <
-            Navigation / >
-            <
-            Switch >
-            <
-            Route exact path = "/"
-            render = {
-                () => this.state.user ? ( < Scanner / > ) : ( < Autentication / > ) }
-            /> <
-            Route exact path = "/summary"
-            component = { Summary }
-            /> <
-            Route path = "/success"
-            component = { Success }
-            /> <
-            Route component = { NoMatch }
-            /> <
-            /Switch> <
-            /Router> <
-            /div>
+        return (
+            <div className="App" >
+                <Router>
+                    <Navigation />
+                    <Switch >
+                        <Route exact path="/" render={() => this.state.user ? (< Scanner />) : (< Autentication />)} />
+                        <Route exact path="/summary" component={Summary} />
+                        <Route path="/success" component={Success} />
+                        <Route path="/absence-detailed" component={AbsenceList} />
+                        <Route path="/full-list" component={TableAttendanceWithName} />
+                        <Route component={NoMatch} />
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 }
