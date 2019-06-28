@@ -27,13 +27,15 @@ class Summary extends React.Component{
                     this.setState({
                         date: attendanceStudent,
                         totalAttendance: attendanceStudents.length -1
+                       // The -1 is due to Firebase's requirement to have a value when starting an array
                     });
             }
         })
         totalStudentsNumber.on('value', (s)=>{
             let totalStudents = s.val();
-                this.setState({
+
                     totalStudents: totalStudents.totalStudents //number 52
+
                 })
         })
     }
