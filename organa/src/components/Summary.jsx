@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from '../firebase/FirebaseConfig';
 import Attendance from './Attendance';
 import Absence from './Absence';
+import TableAttendanceWithName from './TableAttendanceWithName'
 import {Container, Row, Col} from 'react-bootstrap';
 import moment from 'moment';
 
@@ -32,9 +33,9 @@ class Summary extends React.Component{
         })
         totalStudentsNumber.on('value', (s)=>{
             let totalStudents = s.val();
-                this.setState({
-                    totalStudents: totalStudents.totalStudents -4  
-                    //The -4 number represents the drop-outs
+
+                    totalStudents: totalStudents.totalStudents //number 52
+
                 })
         })
     }
@@ -47,6 +48,7 @@ class Summary extends React.Component{
                     <Col lg={8}><h1 ><Attendance totalAttendance={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h1></Col>
                     <Col lg={4}><h2><Absence totalAttendance={this.state.totalAttendance} totalStudents={this.state.totalStudents}/></h2></Col>
                 </Row>
+                <TableAttendanceWithName></TableAttendanceWithName>
             </Container>
         )
     }
