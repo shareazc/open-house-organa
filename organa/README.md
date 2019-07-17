@@ -12,22 +12,6 @@ Como primera iteración consideramos que pueda guardar la asistencia y pueda mos
 
 El listado de estudiantes puede ser indicado desde un JSON o haciendo un fetch a `https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users`.
 
-## UI
-
-Compartimos un prototipo de alta fidelidad que se usó en otra oportunidad, usarlo como referencia:
-
-![prototipo-beta](https://raw.githubusercontent.com/juanjordan/organa-oh/master/prototipo.png)
-
-
-## Flujo con los Códigos QR
-
-Se espera que cada estudiante tenga un código QR que tiene un identificador de ellas como por ejemplo su correo electrónico, al llegar al área de trabajo cada estudiante mostrará su código QR a la webcam de una laptop y esta laptop registrará la asistencia de ella para ese día.
-
-## Recomendaciones
-
-- Si planeamos usar React podemos usar estos 2 libraries para el manejo de QRs: https://www.npmjs.com/package/react-qr-scanner y https://www.npmjs.com/package/react-qr-svg
-- Usar Firebase para la persistencia de la data.
-- Usar herramientas online para la creación de QRs de prueba (si lo consideran necesario) ej: https://www.the-qrcode-generator.com/
 
 ## ¿Por qué el nombre Organa?
 
