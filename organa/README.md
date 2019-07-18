@@ -10,8 +10,6 @@ La solución que proponemos consiste en usar una webcam para leer [códigos QR](
 
 Como primera iteración consideramos que pueda guardar la asistencia y pueda mostrar en una interface cuántas estudiantes asistieron ese día y cuantas inasistencias hubieron.
 
-El listado de estudiantes puede ser indicado desde un JSON o haciendo un fetch a `https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users`.
-
 
 ## ¿Por qué el nombre Organa?
 
