@@ -2,15 +2,15 @@
 
 ![leia-organa](https://cdn3.movieweb.com/i/article/O0m8u4sbGThx14jjeuuDUsegz6cXhJ/798:50/Star-Wars-8-Princess-Leia-Carrie-Fisher-Scenes.jpg)
 
-En Laboratoria estamos buscando una manera eficiente de enterarnos quienes asistieron al área de trabajo cada día. Hasta ahora se ha llevado una asistencia manual pero sabemos que toma tiempo valioso.
+In Laboratoria we're looking for an efficient way to know who attended the work space daily. Up until now it's been done manually 
+but it takes too much time.
 
-La idea de este proyecto es solucionar el registro de asistencia con una aplicación web.
+The idea of this project is to make the attendance-taking routine easier with a web app.
 
-La solución que proponemos consiste en usar una webcam para leer [códigos QR](https://es.wikipedia.org/wiki/C%C3%B3digo_QR) que indetifiquen a cada estudiante que va llegando y se almacene en una base de datos por día.
+The solution we propose consists of using a webcam to read [QR codes](https://es.wikipedia.org/wiki/C%C3%B3digo_QR) that 
+ideantify each student and stores that information in a databse daily.
 
-Como primera iteración consideramos que pueda guardar la asistencia y pueda mostrar en una interface cuántas estudiantes asistieron ese día y cuantas inasistencias hubieron.
 
+## Why the name Organa?
 
-## ¿Por qué el nombre Organa?
-
-Leia Organa es la general de la resistencia en el universo de Star Wars, nos gusta pensar que está muy pendiente de los intergrantes de su equipo!
+Leia Organa is the resistance's general in the Star Wars universe, we like to think she takes good care of her team members!
